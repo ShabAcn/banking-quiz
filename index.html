@@ -55,6 +55,7 @@
       border: 1px solid var(--purple); padding: 5px 14px; border-radius: 2px;
     }
 
+    /* ── TICKER — headlines only, no answers ── */
     .ticker-wrap {
       width: 100%; background: #080808;
       border-bottom: 1px solid #1a1a1a;
@@ -62,7 +63,7 @@
     }
     .ticker-inner {
       display: flex; gap: 56px; white-space: nowrap;
-      animation: ticker 30s linear infinite;
+      animation: ticker 32s linear infinite;
       font-size: 11px; font-weight: 600;
       letter-spacing: 0.09em; text-transform: uppercase; color: var(--grey);
     }
@@ -137,11 +138,12 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       padding: 4px 10px; border-radius: 2px;
     }
-    .tag-deal    { background: rgba(0,180,255,0.12); color: #44ccff; border: 1px solid rgba(0,180,255,0.3); }
-    .tag-reg     { background: rgba(161,0,255,0.14); color: #cc66ff; border: 1px solid rgba(161,0,255,0.3); }
-    .tag-fintech { background: rgba(0,200,83,0.12);  color: #44dd88; border: 1px solid rgba(0,200,83,0.3); }
-    .tag-fun     { background: rgba(255,120,0,0.12); color: #ffaa55; border: 1px solid rgba(255,120,0,0.3); }
-    .tag-ai      { background: rgba(255,184,0,0.12); color: var(--gold); border: 1px solid rgba(255,184,0,0.3); }
+    .tag-deal     { background: rgba(0,180,255,0.12); color: #44ccff; border: 1px solid rgba(0,180,255,0.3); }
+    .tag-reg      { background: rgba(161,0,255,0.14); color: #cc66ff; border: 1px solid rgba(161,0,255,0.3); }
+    .tag-fintech  { background: rgba(0,200,83,0.12);  color: #44dd88; border: 1px solid rgba(0,200,83,0.3); }
+    .tag-fun      { background: rgba(255,120,0,0.12); color: #ffaa55; border: 1px solid rgba(255,120,0,0.3); }
+    .tag-ai       { background: rgba(255,184,0,0.12); color: var(--gold); border: 1px solid rgba(255,184,0,0.3); }
+    .tag-internal { background: rgba(161,0,255,0.18); color: #dd88ff; border: 1px solid rgba(161,0,255,0.4); }
 
     .q-text {
       font-size: 18px; font-weight: 400;
@@ -286,33 +288,36 @@
   <div class="issue-badge">April 2026</div>
 </header>
 
+<!-- TICKER — topic teasers only, no answers -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
-    <em>⚡</em>Santander completes £2.65bn TSB acquisition &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>Monzo exits US market after 7 years &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>Revolut files for US national banking licence &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>FCA &amp; PRA streamline SM&amp;CR regime &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>FPC flags agentic AI risk in payments &amp; markets &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>TSB to leave UK high streets after 215 years &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>Santander completes £2.65bn TSB acquisition &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>Monzo exits US market after 7 years &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>Revolut files for US national banking licence &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>FCA &amp; PRA streamline SM&amp;CR regime &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>FPC flags agentic AI risk in payments &amp; markets &nbsp;&nbsp;&nbsp;
-    <em>⚡</em>TSB to leave UK high streets after 215 years &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Major UK banking deal completed this month &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>A UK neobank makes a surprise exit &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Another UK neobank bets big on the US &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Regulators cut red tape for senior managers &nbsp;&nbsp;&nbsp;
+    <em>⭐</em>UK Banking practice hits a landmark moment &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Bank of England flags a new AI risk category &nbsp;&nbsp;&nbsp;
+    <em>🏏</em>A famous Ashes moment — do you remember when? &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Major UK banking deal completed this month &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>A UK neobank makes a surprise exit &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Another UK neobank bets big on the US &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Regulators cut red tape for senior managers &nbsp;&nbsp;&nbsp;
+    <em>⭐</em>UK Banking practice hits a landmark moment &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Bank of England flags a new AI risk category &nbsp;&nbsp;&nbsp;
+    <em>🏏</em>A famous Ashes moment — do you remember when? &nbsp;&nbsp;&nbsp;
   </div>
 </div>
 
 <div class="hero">
   <p class="hero-eyebrow">⚡ April 2026 — News Quiz</p>
   <h1>Were you paying attention<br/><strong>last month?</strong></h1>
-  <p class="hero-sub">Six questions, all ripped from the April 2026 headlines. Deals, neobanks, regulators, and the odd curveball. No Googling.</p>
+  <p class="hero-sub">Seven questions covering April's biggest market moves, regulatory shifts — plus a cheeky bonus for anyone who was actually at the Kia Oval. No Googling.</p>
   <div class="meta-row">
-    <span>6 Questions</span>
+    <span>7 Questions</span>
     <span class="dot">◆</span>
     <span>April 2026 Events</span>
     <span class="dot">◆</span>
-    <span>~3 Minutes</span>
+    <span>~4 Minutes</span>
   </div>
 </div>
 
@@ -321,9 +326,10 @@
     <div class="progress-fill" id="progressFill"></div>
   </div>
 
+  <!-- Q1 — Santander/TSB -->
   <div class="question-card active" id="q0">
     <div class="q-meta">
-      <span class="q-counter">Question 01 / 06</span>
+      <span class="q-counter">Question 01 / 07</span>
       <span class="q-tag tag-deal">💼 Deal of the Month</span>
     </div>
     <p class="q-text">Santander UK completed a landmark acquisition on 30 April 2026. What was the deal, and what made it historic?</p>
@@ -338,9 +344,10 @@
     </div>
   </div>
 
+  <!-- Q2 — TSB age -->
   <div class="question-card" id="q1">
     <div class="q-meta">
-      <span class="q-counter">Question 02 / 06</span>
+      <span class="q-counter">Question 02 / 07</span>
       <span class="q-tag tag-fun">🍺 Pub Quiz Bonus</span>
     </div>
     <p class="q-text">TSB is expected to vanish from UK high streets following the Santander takeover. Roughly how long had TSB been part of British banking history?</p>
@@ -355,9 +362,10 @@
     </div>
   </div>
 
+  <!-- Q3 — Monzo US exit -->
   <div class="question-card" id="q2">
     <div class="q-meta">
-      <span class="q-counter">Question 03 / 06</span>
+      <span class="q-counter">Question 03 / 07</span>
       <span class="q-tag tag-fintech">🏦 Neobank Watch</span>
     </div>
     <p class="q-text">On 1 April 2026 — and no, it wasn't a prank — which UK neobank announced it was shutting down its US operations after seven years, making around 50 employees redundant?</p>
@@ -372,9 +380,10 @@
     </div>
   </div>
 
+  <!-- Q4 — Revolut -->
   <div class="question-card" id="q3">
     <div class="q-meta">
-      <span class="q-counter">Question 04 / 06</span>
+      <span class="q-counter">Question 04 / 07</span>
       <span class="q-tag tag-fintech">🏦 Neobank Watch</span>
     </div>
     <p class="q-text">As Monzo retreated from the US in April 2026, which UK neobank was simultaneously doing the opposite — filing for a full US national banking licence?</p>
@@ -389,9 +398,10 @@
     </div>
   </div>
 
+  <!-- Q5 — SM&CR -->
   <div class="question-card" id="q4">
     <div class="q-meta">
-      <span class="q-counter">Question 05 / 06</span>
+      <span class="q-counter">Question 05 / 07</span>
       <span class="q-tag tag-reg">📋 Regulation</span>
     </div>
     <p class="q-text">The FCA and PRA confirmed reforms in April 2026 designed to halve the administrative burden on financial firms. Which long-standing regime were they overhauling?</p>
@@ -406,12 +416,13 @@
     </div>
   </div>
 
+  <!-- Q6 — Agentic AI -->
   <div class="question-card" id="q5">
     <div class="q-meta">
-      <span class="q-counter">Question 06 / 06</span>
+      <span class="q-counter">Question 06 / 07</span>
       <span class="q-tag tag-ai">🤖 AI &amp; Innovation</span>
     </div>
-    <p class="q-text">The Bank of England's Financial Policy Committee raised concerns about AI in financial services in April 2026 — and asked regulators to urgently investigate one specific type. What was it?</p>
+    <p class="q-text">The Bank of England's Financial Policy Committee raised concerns about AI in April 2026 — and asked regulators to urgently investigate one specific type. What was it?</p>
     <div class="answers">
       <button class="answer-btn" onclick="selectAnswer(5,0)"><span class="answer-letter">A</span>Generative AI used in customer marketing and communications</button>
       <button class="answer-btn" onclick="selectAnswer(5,1)"><span class="answer-letter">B</span>Agentic AI — systems that can take autonomous, multi-step actions on behalf of users</button>
@@ -423,6 +434,25 @@
     </div>
   </div>
 
+  <!-- Q7 — Ashes bonus -->
+  <div class="question-card" id="q6">
+    <div class="q-meta">
+      <span class="q-counter">Question 07 / 07</span>
+      <span class="q-tag tag-internal">🏏 Were You There?</span>
+    </div>
+    <p class="q-text">At our first-ever UK Banking Offsite at the Kia Oval on 28 April, the Ashes Suite had a photo on the wall of England lifting the Ashes trophy. What year was that famous victory?</p>
+    <div class="answers">
+      <button class="answer-btn" onclick="selectAnswer(6,0)"><span class="answer-letter">A</span>2001</button>
+      <button class="answer-btn" onclick="selectAnswer(6,1)"><span class="answer-letter">B</span>2003</button>
+      <button class="answer-btn" onclick="selectAnswer(6,2)"><span class="answer-letter">C</span>2005</button>
+      <button class="answer-btn" onclick="selectAnswer(6,3)"><span class="answer-letter">D</span>2009</button>
+    </div>
+    <div class="explanation" id="exp6">
+      <strong>Correct: C — 2005.</strong> The 2005 Ashes series is widely regarded as the greatest in cricket history. England won 2-1, with The Oval hosting the final Test — a draw that was enough to seal the urn for the first time in 18 years. If you were in that suite and still got this wrong, no comment. 🏏
+    </div>
+  </div>
+
+  <!-- RESULTS -->
   <div class="results-card" id="resultsCard">
     <div class="score-ring-wrap">
       <svg class="score-ring" width="140" height="140" viewBox="0 0 140 140">
@@ -430,7 +460,7 @@
         <circle class="score-ring-fill" id="ringFill" cx="70" cy="70" r="65"/>
       </svg>
       <div class="score-ring-label">
-        <span id="scoreNum">0</span>/6
+        <span id="scoreNum">0</span>/7
         <small>Score</small>
       </div>
     </div>
@@ -452,7 +482,7 @@
     </div>
     <div class="share-cta">
       <div class="share-cta-title">📣 Post your score</div>
-      <p>Drop your result in the <span class="teams-pill">Teams</span> <strong>S&amp;C Banking</strong> group chat. Let's see who's actually been reading the newsletter — and who's been winging it. 👀</p>
+      <p>Drop your result in the <span class="teams-pill">Teams</span> <strong>S&amp;C Banking</strong> group chat. Let's see who's been reading the newsletter — and who got the Ashes question without being there. 👀🏏</p>
     </div>
   </div>
 
@@ -468,8 +498,8 @@
 </footer>
 
 <script>
-  const TOTAL = 6;
-  const correctAnswers = [1, 2, 2, 1, 1, 1];
+  const TOTAL = 7;
+  const correctAnswers = [1, 2, 2, 1, 1, 1, 2];
   let current = 0, score = 0;
   let answered = new Array(TOTAL).fill(false);
   let locked = false;
@@ -546,15 +576,16 @@
     document.getElementById('correctCount').textContent = score;
     document.getElementById('incorrectCount').textContent = TOTAL - score;
     document.getElementById('pctNum').textContent = Math.round(score / TOTAL * 100) + '%';
-    const headlines = ['Keep reading!', 'Keep reading!', 'Getting there.', 'Not bad at all.', 'Sharp as ever.', 'Impressive.', '📰 Full marks!'];
+    const headlines = ['Keep reading!', 'Keep reading!', 'Getting there.', 'Not bad.', 'Solid effort.', 'Sharp as ever.', 'Impressive.', '📰 Full marks!'];
     const subs = [
-      'Looks like April was a busy month — time to catch up on the news! Read our newsletter :)',
-      'A few headlines slipped by. Worth a re-read of this month newsletter.',
+      'Looks like April was a busy month — time to catch up on the newsletter!',
+      'A few headlines slipped by. Worth a re-read of this month\'s edition.',
       'You caught some big stories, but a couple caught you off guard.',
-      'Half the room would score less. Good awareness of the key April moments.',
-      'Strong grasp of the month\'s biggest moves across deals, regulation and fintech.',
-      'You clearly read every word of the news. Top marks.',
-      'Perfect score — you missed absolutely nothing from April 2026. 🎉'
+      'Decent — were you at least paying attention at the Kia Oval? 🏏',
+      'Half the room would score less. Good awareness of April\'s key moments.',
+      'Strong across markets, regulation and fintech. Well read.',
+      'You clearly paid close attention all month. Excellent.',
+      'Perfect score — including the Ashes question. Truly one of us. 🏏🎉'
     ];
     document.getElementById('resultsHeadline').textContent = headlines[score];
     document.getElementById('resultsSub').textContent = subs[score];
