@@ -30,4 +30,540 @@
 
     header {
       width: 100%;
-      background: var(--black
+      background: var(--black);
+      border-bottom: 3px solid var(--purple);
+      padding: 16px 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-block { display: flex; align-items: center; gap: 14px; }
+    .accenture-svg { height: 24px; }
+    .divider-line { width: 1px; height: 26px; background: var(--purple); }
+    .newsletter-label {
+      font-size: 10.5px; font-weight: 500;
+      letter-spacing: 0.17em; text-transform: uppercase;
+      color: var(--grey); line-height: 1.5;
+    }
+    .newsletter-label span { display: block; color: var(--white); font-weight: 700; }
+    .issue-badge {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple);
+      border: 1px solid var(--purple); padding: 5px 14px; border-radius: 2px;
+    }
+
+    .ticker-wrap {
+      width: 100%; background: #080808;
+      border-bottom: 1px solid #1a1a1a;
+      overflow: hidden; padding: 9px 0;
+    }
+    .ticker-inner {
+      display: flex; gap: 56px; white-space: nowrap;
+      animation: ticker 30s linear infinite;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.09em; text-transform: uppercase; color: var(--grey);
+    }
+    .ticker-inner em { color: var(--gold); font-style: normal; margin-right: 8px; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .hero {
+      width: 100%; max-width: 820px;
+      padding: 52px 32px 28px; text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.85rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.2; color: var(--white);
+      margin-bottom: 14px; font-family: Georgia, serif;
+    }
+    .hero h1 strong { font-style: normal; font-weight: 800; color: var(--purple); }
+    .hero-sub {
+      font-size: 15px; color: var(--grey); line-height: 1.75;
+      max-width: 520px; margin: 0 auto 26px;
+    }
+    .meta-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--grey); flex-wrap: wrap;
+    }
+    .meta-row .dot { color: var(--purple); font-size: 7px; }
+
+    .quiz-shell { width: 100%; max-width: 820px; padding: 32px 32px 80px; }
+
+    .progress-track {
+      height: 3px; background: #181818; border-radius: 2px;
+      margin-bottom: 30px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--purple), var(--gold));
+      transition: width 0.5s cubic-bezier(.4,0,.2,1); width: 0%;
+    }
+
+    .question-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: 4px;
+      padding: 32px 32px 24px; display: none;
+      animation: slideIn 0.3s ease forwards;
+    }
+    .question-card.active { display: block; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-meta {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 16px;
+      flex-wrap: wrap; gap: 8px;
+    }
+    .q-counter {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    }
+    .q-tag {
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 2px;
+    }
+    .tag-deal    { background: rgba(0,180,255,0.12); color: #44ccff; border: 1px solid rgba(0,180,255,0.3); }
+    .tag-reg     { background: rgba(161,0,255,0.14); color: #cc66ff; border: 1px solid rgba(161,0,255,0.3); }
+    .tag-fintech { background: rgba(0,200,83,0.12);  color: #44dd88; border: 1px solid rgba(0,200,83,0.3); }
+    .tag-fun     { background: rgba(255,120,0,0.12); color: #ffaa55; border: 1px solid rgba(255,120,0,0.3); }
+    .tag-ai      { background: rgba(255,184,0,0.12); color: var(--gold); border: 1px solid rgba(255,184,0,0.3); }
+
+    .q-text {
+      font-size: 18px; font-weight: 400;
+      line-height: 1.62; color: var(--white); margin-bottom: 22px;
+    }
+
+    .answers { display: grid; gap: 9px; }
+    .answer-btn {
+      background: transparent; border: 1px solid #242424;
+      color: var(--white); padding: 14px 18px;
+      text-align: left; font-family: inherit; font-size: 14px;
+      line-height: 1.5; border-radius: 3px; cursor: pointer;
+      display: flex; align-items: flex-start; gap: 13px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .answer-btn:hover:not(:disabled) { border-color: var(--gold); background: rgba(255,184,0,0.05); }
+    .answer-btn.selected             { border-color: var(--gold); background: rgba(255,184,0,0.09); }
+    .answer-btn.correct              { border-color: var(--correct);   background: rgba(0,200,83,0.09);  color: var(--correct); }
+    .answer-btn.incorrect            { border-color: var(--incorrect); background: rgba(255,61,0,0.09);  color: var(--incorrect); }
+    .answer-btn.dim                  { opacity: 0.27; pointer-events: none; }
+    .answer-letter {
+      font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em;
+      color: var(--gold); min-width: 18px; margin-top: 2px;
+    }
+    .answer-btn.correct  .answer-letter { color: var(--correct); }
+    .answer-btn.incorrect .answer-letter { color: var(--incorrect); }
+
+    .explanation {
+      margin-top: 13px; padding: 13px 16px;
+      background: #111; border-left: 3px solid var(--gold);
+      border-radius: 2px; font-size: 13px; color: #aaa;
+      line-height: 1.7; display: none;
+    }
+    .explanation.show { display: block; animation: fadeIn 0.3s ease; }
+    .explanation strong { color: var(--white); }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .controls { display: flex; align-items: center; justify-content: space-between; margin-top: 22px; }
+    .btn {
+      font-family: inherit; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 13px 26px; border-radius: 2px; cursor: pointer;
+      transition: all 0.18s; border: none;
+    }
+    .btn-primary { background: var(--purple); color: var(--white); }
+    .btn-primary:hover:not(:disabled) { background: #8800dd; }
+    .btn-primary:disabled { background: #1c1c1c; color: #3a3a3a; cursor: not-allowed; }
+    .btn-ghost { background: transparent; color: var(--grey); border: 1px solid #282828; }
+    .btn-ghost:hover { border-color: #555; color: var(--white); }
+
+    .results-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-top: 3px solid var(--purple); border-radius: 4px;
+      padding: 48px 32px 36px; text-align: center; display: none;
+      animation: slideIn 0.4s ease forwards;
+    }
+    .results-card.show { display: block; }
+
+    .score-ring-wrap { display: inline-block; margin-bottom: 24px; position: relative; }
+    .score-ring { transform: rotate(-90deg); }
+    .score-ring-bg   { fill: none; stroke: #1e1e1e; stroke-width: 8; }
+    .score-ring-fill {
+      fill: none; stroke: var(--purple); stroke-width: 8; stroke-linecap: round;
+      stroke-dasharray: 408; stroke-dashoffset: 408;
+      transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1) 0.3s;
+    }
+    .score-ring-label {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 30px; font-weight: 800; color: var(--white); line-height: 1;
+    }
+    .score-ring-label small {
+      display: block; font-size: 11px; font-weight: 400;
+      color: var(--grey); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px;
+    }
+    .results-headline {
+      font-family: Georgia, serif; font-size: 25px;
+      font-style: italic; color: var(--white); margin-bottom: 10px;
+    }
+    .results-sub {
+      font-size: 14px; color: var(--grey); line-height: 1.75;
+      max-width: 450px; margin: 0 auto 24px;
+    }
+    .score-breakdown { display: flex; justify-content: center; gap: 36px; margin-bottom: 28px; }
+    .breakdown-item { text-align: center; }
+    .breakdown-num { font-size: 24px; font-weight: 800; color: var(--purple); }
+    .breakdown-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--grey); margin-top: 4px; }
+
+    .share-cta {
+      margin: 0 auto; max-width: 490px;
+      background: #111; border: 1px solid #272727;
+      border-left: 4px solid var(--purple); border-radius: 3px; padding: 18px 22px; text-align: left;
+    }
+    .share-cta-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--purple); margin-bottom: 8px;
+    }
+    .share-cta p { font-size: 14px; color: var(--grey); line-height: 1.65; }
+    .share-cta strong { color: var(--white); }
+    .teams-pill {
+      display: inline-block; background: #5059C9; color: white;
+      font-size: 10px; font-weight: 700; padding: 2px 7px;
+      border-radius: 3px; letter-spacing: 0.05em; margin: 0 2px; vertical-align: middle;
+    }
+
+    footer {
+      width: 100%; border-top: 1px solid #161616;
+      padding: 20px 44px; display: flex; align-items: center;
+      justify-content: space-between; font-size: 11px;
+      color: #363636; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .footer-purple { color: var(--purple); }
+
+    @media (max-width: 640px) {
+      header { padding: 13px 16px; }
+      .newsletter-label { display: none; }
+      .hero { padding: 32px 16px 22px; }
+      .quiz-shell { padding: 24px 16px 60px; }
+      .question-card { padding: 20px 15px; }
+      .q-text { font-size: 16px; }
+      .controls { flex-direction: column-reverse; gap: 10px; }
+      .btn { width: 100%; text-align: center; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 16px; }
+      .score-breakdown { gap: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <svg class="accenture-svg" viewBox="0 0 220 34" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="26" font-family="Arial Black, Arial, sans-serif" font-size="26" font-weight="900" fill="white" letter-spacing="-0.5">Accenture</text>
+      <polygon points="207,1 220,1 213,12" fill="#A100FF"/>
+    </svg>
+    <div class="divider-line"></div>
+    <div class="newsletter-label">
+      Strategy &amp; Consulting
+      <span>UK Banking Newsletter</span>
+    </div>
+  </div>
+  <div class="issue-badge">April 2026</div>
+</header>
+
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <em>⚡</em>Santander completes £2.65bn TSB acquisition &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Monzo exits US market after 7 years &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Revolut files for US national banking licence &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>FCA &amp; PRA streamline SM&amp;CR regime &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>FPC flags agentic AI risk in payments &amp; markets &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>TSB to leave UK high streets after 215 years &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Santander completes £2.65bn TSB acquisition &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Monzo exits US market after 7 years &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>Revolut files for US national banking licence &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>FCA &amp; PRA streamline SM&amp;CR regime &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>FPC flags agentic AI risk in payments &amp; markets &nbsp;&nbsp;&nbsp;
+    <em>⚡</em>TSB to leave UK high streets after 215 years &nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+
+<div class="hero">
+  <p class="hero-eyebrow">⚡ April 2026 — News Quiz</p>
+  <h1>Were you paying attention<br/><strong>last month?</strong></h1>
+  <p class="hero-sub">Six questions, all ripped from the April 2026 headlines. Deals, neobanks, regulators, and the odd curveball. No Googling.</p>
+  <div class="meta-row">
+    <span>6 Questions</span>
+    <span class="dot">◆</span>
+    <span>April 2026 Events</span>
+    <span class="dot">◆</span>
+    <span>~3 Minutes</span>
+  </div>
+</div>
+
+<div class="quiz-shell">
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="question-card active" id="q0">
+    <div class="q-meta">
+      <span class="q-counter">Question 01 / 06</span>
+      <span class="q-tag tag-deal">💼 Deal of the Month</span>
+    </div>
+    <p class="q-text">Santander UK completed a landmark acquisition on 30 April 2026. What was the deal, and what made it historic?</p>
+    <div class="answers">
+      <button class="answer-btn" onclick="selectAnswer(0,0)"><span class="answer-letter">A</span>It acquired Metro Bank for £900m — the first UK bank rescue since 2008</button>
+      <button class="answer-btn" onclick="selectAnswer(0,1)"><span class="answer-letter">B</span>It completed its £2.65bn purchase of TSB — the biggest UK banking investment in over 15 years</button>
+      <button class="answer-btn" onclick="selectAnswer(0,2)"><span class="answer-letter">C</span>It merged with Nationwide to form the UK's largest retail bank</button>
+      <button class="answer-btn" onclick="selectAnswer(0,3)"><span class="answer-letter">D</span>It acquired Virgin Money's mortgage book in a £1.2bn distressed sale</button>
+    </div>
+    <div class="explanation" id="exp0">
+      <strong>Correct: B.</strong> Santander UK completed its £2.65bn acquisition of TSB on 30 April 2026 — the single largest investment in UK banking in over 15 years. The combined group now serves nearly 28 million customers, making Santander UK the third largest bank by personal current account balances and fourth in mortgages.
+    </div>
+  </div>
+
+  <div class="question-card" id="q1">
+    <div class="q-meta">
+      <span class="q-counter">Question 02 / 06</span>
+      <span class="q-tag tag-fun">🍺 Pub Quiz Bonus</span>
+    </div>
+    <p class="q-text">TSB is expected to vanish from UK high streets following the Santander takeover. Roughly how long had TSB been part of British banking history?</p>
+    <div class="answers">
+      <button class="answer-btn" onclick="selectAnswer(1,0)"><span class="answer-letter">A</span>Around 50 years</button>
+      <button class="answer-btn" onclick="selectAnswer(1,1)"><span class="answer-letter">B</span>Around 100 years</button>
+      <button class="answer-btn" onclick="selectAnswer(1,2)"><span class="answer-letter">C</span>Around 215 years</button>
+      <button class="answer-btn" onclick="selectAnswer(1,3)"><span class="answer-letter">D</span>Around 300 years</button>
+    </div>
+    <div class="explanation" id="exp1">
+      <strong>Correct: C.</strong> TSB traces its roots back approximately 215 years to the early savings bank movement of the 19th century. Its expected disappearance from the high street marks the end of a remarkably long chapter in British retail banking.
+    </div>
+  </div>
+
+  <div class="question-card" id="q2">
+    <div class="q-meta">
+      <span class="q-counter">Question 03 / 06</span>
+      <span class="q-tag tag-fintech">🏦 Neobank Watch</span>
+    </div>
+    <p class="q-text">On 1 April 2026 — and no, it wasn't a prank — which UK neobank announced it was shutting down its US operations after seven years, making around 50 employees redundant?</p>
+    <div class="answers">
+      <button class="answer-btn" onclick="selectAnswer(2,0)"><span class="answer-letter">A</span>Revolut</button>
+      <button class="answer-btn" onclick="selectAnswer(2,1)"><span class="answer-letter">B</span>Starling Bank</button>
+      <button class="answer-btn" onclick="selectAnswer(2,2)"><span class="answer-letter">C</span>Monzo</button>
+      <button class="answer-btn" onclick="selectAnswer(2,3)"><span class="answer-letter">D</span>Wise</button>
+    </div>
+    <div class="explanation" id="exp2">
+      <strong>Correct: C.</strong> Monzo announced on 1 April 2026 it was exiting the US, calling it "a deliberate, strategic decision to focus on scaling in our home market and Europe." Monzo had entered the US in 2019 via a partner bank but never secured its own US licence. Ironically, rival Revolut filed for a full US national banking licence that same month.
+    </div>
+  </div>
+
+  <div class="question-card" id="q3">
+    <div class="q-meta">
+      <span class="q-counter">Question 04 / 06</span>
+      <span class="q-tag tag-fintech">🏦 Neobank Watch</span>
+    </div>
+    <p class="q-text">As Monzo retreated from the US in April 2026, which UK neobank was simultaneously doing the opposite — filing for a full US national banking licence?</p>
+    <div class="answers">
+      <button class="answer-btn" onclick="selectAnswer(3,0)"><span class="answer-letter">A</span>Starling Bank</button>
+      <button class="answer-btn" onclick="selectAnswer(3,1)"><span class="answer-letter">B</span>Revolut</button>
+      <button class="answer-btn" onclick="selectAnswer(3,2)"><span class="answer-letter">C</span>Atom Bank</button>
+      <button class="answer-btn" onclick="selectAnswer(3,3)"><span class="answer-letter">D</span>OakNorth</button>
+    </div>
+    <div class="explanation" id="exp3">
+      <strong>Correct: B.</strong> Revolut filed for a US national banking charter with the OCC in early 2026 — the same month Monzo quit the market entirely. Revolut already holds its UK banking licence, reported a record $2.3bn profit before tax for 2025, and serves over 68 million customers globally.
+    </div>
+  </div>
+
+  <div class="question-card" id="q4">
+    <div class="q-meta">
+      <span class="q-counter">Question 05 / 06</span>
+      <span class="q-tag tag-reg">📋 Regulation</span>
+    </div>
+    <p class="q-text">The FCA and PRA confirmed reforms in April 2026 designed to halve the administrative burden on financial firms. Which long-standing regime were they overhauling?</p>
+    <div class="answers">
+      <button class="answer-btn" onclick="selectAnswer(4,0)"><span class="answer-letter">A</span>Consumer Duty</button>
+      <button class="answer-btn" onclick="selectAnswer(4,1)"><span class="answer-letter">B</span>The Senior Managers and Certification Regime (SM&CR)</button>
+      <button class="answer-btn" onclick="selectAnswer(4,2)"><span class="answer-letter">C</span>Basel 3.1 capital rules</button>
+      <button class="answer-btn" onclick="selectAnswer(4,3)"><span class="answer-letter">D</span>The Financial Services Compensation Scheme (FSCS)</button>
+    </div>
+    <div class="explanation" id="exp4">
+      <strong>Correct: B.</strong> The FCA and PRA's first phase of SM&CR reforms in April 2026 gave firms more time for senior manager applications, updated financial thresholds for Enhanced firms, and removed unnecessary complexity — while keeping the core principle of senior leader accountability firmly intact.
+    </div>
+  </div>
+
+  <div class="question-card" id="q5">
+    <div class="q-meta">
+      <span class="q-counter">Question 06 / 06</span>
+      <span class="q-tag tag-ai">🤖 AI &amp; Innovation</span>
+    </div>
+    <p class="q-text">The Bank of England's Financial Policy Committee raised concerns about AI in financial services in April 2026 — and asked regulators to urgently investigate one specific type. What was it?</p>
+    <div class="answers">
+      <button class="answer-btn" onclick="selectAnswer(5,0)"><span class="answer-letter">A</span>Generative AI used in customer marketing and communications</button>
+      <button class="answer-btn" onclick="selectAnswer(5,1)"><span class="answer-letter">B</span>Agentic AI — systems that can take autonomous, multi-step actions on behalf of users</button>
+      <button class="answer-btn" onclick="selectAnswer(5,2)"><span class="answer-letter">C</span>Predictive AI models used in credit scoring</button>
+      <button class="answer-btn" onclick="selectAnswer(5,3)"><span class="answer-letter">D</span>Deepfake AI used to facilitate financial fraud</button>
+    </div>
+    <div class="explanation" id="exp5">
+      <strong>Correct: B.</strong> The FPC's April 2026 record warned that while AI hasn't yet reached systemic risk levels, risks are likely to increase "potentially rapidly." It specifically asked the Bank and FCA to investigate agentic AI — systems that autonomously take multi-step actions — focusing on payment and financial market use cases.
+    </div>
+  </div>
+
+  <div class="results-card" id="resultsCard">
+    <div class="score-ring-wrap">
+      <svg class="score-ring" width="140" height="140" viewBox="0 0 140 140">
+        <circle class="score-ring-bg" cx="70" cy="70" r="65"/>
+        <circle class="score-ring-fill" id="ringFill" cx="70" cy="70" r="65"/>
+      </svg>
+      <div class="score-ring-label">
+        <span id="scoreNum">0</span>/6
+        <small>Score</small>
+      </div>
+    </div>
+    <h2 class="results-headline" id="resultsHeadline">Well done.</h2>
+    <p class="results-sub" id="resultsSub"></p>
+    <div class="score-breakdown">
+      <div class="breakdown-item">
+        <div class="breakdown-num" id="correctCount">0</div>
+        <div class="breakdown-label">Correct</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-num" id="incorrectCount" style="color:var(--incorrect)">0</div>
+        <div class="breakdown-label">Incorrect</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-num" id="pctNum">0%</div>
+        <div class="breakdown-label">Accuracy</div>
+      </div>
+    </div>
+    <div class="share-cta">
+      <div class="share-cta-title">📣 Post your score</div>
+      <p>Drop your result in the <span class="teams-pill">Teams</span> <strong>S&amp;C Banking</strong> group chat. Let's see who's actually been reading the newsletter — and who's been winging it. 👀</p>
+    </div>
+  </div>
+
+  <div class="controls" id="controls" style="display:flex;">
+    <button class="btn btn-ghost" id="prevBtn" onclick="prevQuestion()" style="display:none;">← Back</button>
+    <button class="btn btn-primary" id="nextBtn" onclick="answered[current] ? advance() : submitAnswer()" disabled>Select an Answer</button>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Accenture. <span class="footer-purple">All Rights Reserved.</span></span>
+  <span>Strategy &amp; Consulting · UK Banking &amp; Financial Services</span>
+</footer>
+
+<script>
+  const TOTAL = 6;
+  const correctAnswers = [1, 2, 2, 1, 1, 1];
+  let current = 0, score = 0;
+  let answered = new Array(TOTAL).fill(false);
+  let locked = false;
+
+  updateProgress();
+
+  function selectAnswer(qIdx, aIdx) {
+    if (locked || answered[qIdx]) return;
+    const card = document.getElementById('q' + qIdx);
+    card.querySelectorAll('.answer-btn').forEach(b => b.classList.remove('selected'));
+    card.querySelectorAll('.answer-btn')[aIdx].classList.add('selected');
+    const nb = document.getElementById('nextBtn');
+    nb.disabled = false;
+    nb.textContent = current === TOTAL - 1 ? 'Finish ›' : 'Next ›';
+  }
+
+  function submitAnswer() {
+    if (locked) return;
+    const card = document.getElementById('q' + current);
+    const selected = card.querySelector('.answer-btn.selected');
+    if (!selected) return;
+    locked = true;
+    answered[current] = true;
+    const btns = card.querySelectorAll('.answer-btn');
+    const selectedIdx = Array.from(btns).indexOf(selected);
+    btns.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === correctAnswers[current])  btn.classList.add('correct');
+      else if (i === selectedIdx)         btn.classList.add('incorrect');
+      else                                btn.classList.add('dim');
+    });
+    if (selectedIdx === correctAnswers[current]) score++;
+    document.getElementById('exp' + current).classList.add('show');
+    const nb = document.getElementById('nextBtn');
+    nb.disabled = false;
+    nb.textContent = current === TOTAL - 1 ? 'View Results ›' : 'Next Question ›';
+  }
+
+  function advance() {
+    if (current === TOTAL - 1) {
+      showResults();
+    } else {
+      current++;
+      showCard(current);
+      locked = false;
+      const nb = document.getElementById('nextBtn');
+      nb.disabled = true;
+      nb.textContent = 'Select an Answer';
+    }
+  }
+
+  function prevQuestion() {
+    if (current > 0 && !answered[current - 1]) { current--; showCard(current); }
+  }
+
+  function showCard(idx) {
+    document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+    document.getElementById('q' + idx).classList.add('active');
+    document.getElementById('prevBtn').style.display =
+      (idx > 0 && !answered[idx - 1]) ? 'block' : 'none';
+    updateProgress();
+  }
+
+  function updateProgress() {
+    document.getElementById('progressFill').style.width = ((current / TOTAL) * 100) + '%';
+  }
+
+  function showResults() {
+    document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+    document.getElementById('controls').style.display = 'none';
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('resultsCard').classList.add('show');
+    document.getElementById('scoreNum').textContent = score;
+    document.getElementById('correctCount').textContent = score;
+    document.getElementById('incorrectCount').textContent = TOTAL - score;
+    document.getElementById('pctNum').textContent = Math.round(score / TOTAL * 100) + '%';
+    const headlines = ['Keep reading!', 'Keep reading!', 'Getting there.', 'Not bad at all.', 'Sharp as ever.', 'Impressive.', '📰 Full marks!'];
+    const subs = [
+      'Looks like April was a busy month — time to catch up on the newsletter!',
+      'A few headlines slipped by. Worth a re-read of this month\'s edition.',
+      'You caught some big stories, but a couple caught you off guard.',
+      'Half the room would score less. Good awareness of the key April moments.',
+      'Strong grasp of the month\'s biggest moves across deals, regulation and fintech.',
+      'You clearly read every word of the newsletter. Top marks.',
+      'Perfect score — you missed absolutely nothing from April 2026. 🎉'
+    ];
+    document.getElementById('resultsHeadline').textContent = headlines[score];
+    document.getElementById('resultsSub').textContent = subs[score];
+    const circumference = 2 * Math.PI * 65;
+    setTimeout(() => {
+      document.getElementById('ringFill').style.strokeDashoffset =
+        circumference - (score / TOTAL) * circumference;
+    }, 100);
+  }
+</script>
+</body>
+</html>
