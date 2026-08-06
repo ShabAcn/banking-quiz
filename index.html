@@ -3,918 +3,782 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>World Cup 2026 Quiz ⚽ Accenture S&C Banking</title>
+  <title>July 2026 Quiz ☀️ Accenture S&C Banking</title>
   <style>
     :root{
       --bg:#0a0a0f;--card:#111118;--border:#222230;
       --purple:#A100FF;--gold:#FFB800;--green:#00C853;--red:#FF3D00;
-      --white:#ffffff;--grey:#888;
-      --pitch:#1a4a1a;--grass:#2d7a2d;
+      --white:#fff;--grey:#777;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--white);min-height:100vh;display:flex;flex-direction:column;align-items:center}
 
-    /* ── HEADER ── */
-    header{width:100%;background:linear-gradient(135deg,#0a0a1a 0%,#1a0030 50%,#0a1a0a 100%);border-bottom:3px solid var(--gold);padding:20px 32px;text-align:center;position:relative;overflow:hidden}
-    header::before{content:'⚽';font-size:120px;position:absolute;left:-20px;top:-20px;opacity:.06}
-    header::after{content:'🏆';font-size:120px;position:absolute;right:-20px;bottom:-20px;opacity:.06}
-    .header-flags{font-size:28px;letter-spacing:4px;margin-bottom:8px}
-    .header-title{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;letter-spacing:-.5px}
-    .header-title .wc{color:var(--gold)}
-    .header-title .ac{color:var(--purple)}
-    .header-sub{font-size:13px;color:#aaa;margin-top:6px;letter-spacing:.1em;text-transform:uppercase}
+    /* HEADER */
+    header{width:100%;background:linear-gradient(135deg,#0a0a1a,#1a1a00,#0a100a);border-bottom:3px solid var(--gold);padding:22px 32px;text-align:center;position:relative;overflow:hidden}
+    header::before{content:'☀️';font-size:120px;position:absolute;left:-20px;top:-20px;opacity:.06;pointer-events:none}
+    header::after{content:'🌊';font-size:120px;position:absolute;right:-20px;bottom:-20px;opacity:.06;pointer-events:none}
+    .hdr-icons{font-size:28px;letter-spacing:8px;margin-bottom:8px}
+    .hdr-title{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:900}
+    .hdr-title .summer{color:var(--gold)}
+    .hdr-title .ac{color:var(--purple)}
+    .hdr-sub{font-size:12px;color:#999;margin-top:6px;letter-spacing:.14em;text-transform:uppercase}
 
-    /* ── HERO ── */
-    .hero{width:100%;max-width:760px;padding:36px 24px 20px;text-align:center}
-    .hero-score{display:flex;justify-content:center;gap:32px;margin-bottom:24px;flex-wrap:wrap}
-    .score-pill{background:var(--card);border:1px solid var(--border);border-radius:50px;padding:10px 24px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
-    .score-pill span{color:var(--white);font-size:20px;display:block;margin-top:2px}
-    .progress-bar{width:100%;height:6px;background:#1a1a2a;border-radius:3px;overflow:hidden;margin-bottom:8px}
-    .progress-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--gold));transition:width .4s ease;width:0%}
-    .progress-label{font-size:11px;color:var(--grey);text-align:right;letter-spacing:.08em}
+    /* HERO */
+    .hero{width:100%;max-width:760px;padding:28px 24px 14px;text-align:center}
+    .pills{display:flex;justify-content:center;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+    .pill{background:var(--card);border:1px solid var(--border);border-radius:40px;padding:9px 20px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+    .pill span{color:var(--white);font-size:19px;display:block;margin-top:1px}
+    .prog-bar{width:100%;height:5px;background:#1a1a2a;border-radius:3px;overflow:hidden;margin-bottom:5px}
+    .prog-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--gold));transition:width .4s ease;width:0%}
+    .prog-label{font-size:11px;color:var(--grey);text-align:right;letter-spacing:.08em}
 
-    /* ── CARDS ── */
+    /* CARDS */
     .shell{width:100%;max-width:760px;padding:0 24px 80px}
     .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 28px 22px;display:none;animation:pop .3s ease}
     .card.active{display:block}
     @keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
     .card-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
     .card-num{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
-    .card-cat{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px}
-    .cat-football{background:rgba(0,200,83,.15);color:#44dd88;border:1px solid rgba(0,200,83,.3)}
+    .card-cat{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:20px}
     .cat-banking{background:rgba(161,0,255,.15);color:#cc66ff;border:1px solid rgba(161,0,255,.3)}
-    .cat-wally{background:rgba(255,184,0,.15);color:var(--gold);border:1px solid rgba(255,184,0,.3)}
-    .card-q{font-size:20px;font-weight:600;line-height:1.5;margin-bottom:20px}
-    .card-q .emoji{font-size:26px;display:block;margin-bottom:8px}
+    .cat-fun{background:rgba(255,184,0,.15);color:var(--gold);border:1px solid rgba(255,184,0,.3)}
+    .cat-wally{background:rgba(0,230,200,.15);color:#00e6c8;border:1px solid rgba(0,230,200,.3)}
+    .cat-visual{background:rgba(255,80,120,.15);color:#ff8aaa;border:1px solid rgba(255,80,120,.3)}
+    .card-q{font-size:19px;font-weight:600;line-height:1.55;margin-bottom:22px}
+    .card-q .big{font-size:36px;display:block;margin-bottom:10px}
 
-    /* ── ANSWERS ── */
+    /* STANDARD ANSWERS */
     .answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .ans{background:#0d0d18;border:1px solid #222230;border-radius:8px;padding:14px 16px;cursor:pointer;font-size:14px;font-weight:600;line-height:1.4;transition:all .15s;display:flex;align-items:center;gap:10px;color:var(--white)}
-    .ans:hover:not(.locked){border-color:var(--gold);background:#1a1a08;transform:translateY(-1px)}
-    .ans .letter{font-size:11px;font-weight:900;color:var(--gold);min-width:18px}
-    .ans.selected{border-color:var(--gold);background:rgba(255,184,0,.08);}
-    .ans.correct{border-color:var(--green);background:rgba(0,200,83,.12);color:var(--green)}
-    .ans.correct .letter{color:var(--green)}
-    .ans.wrong{border-color:var(--red);background:rgba(255,61,0,.1);color:var(--red)}
-    .ans.wrong .letter{color:var(--red)}
-    .ans.dim{opacity:.25;pointer-events:none}
-    .ans.locked{cursor:default;pointer-events:none}
+    .ans{background:#0d0d18;border:2px solid #1e1e2e;border-radius:8px;padding:14px 16px;cursor:pointer;font-size:14px;font-weight:600;line-height:1.45;transition:all .15s;display:flex;align-items:flex-start;gap:10px;color:var(--white);user-select:none}
+    .ans .ltr{font-size:11px;font-weight:900;color:var(--gold);min-width:18px;margin-top:1px;flex-shrink:0}
+    .ans:hover:not(.locked){border-color:var(--gold);background:#1a1400;transform:translateY(-2px)}
+    .ans.selected{border-color:var(--gold);background:rgba(255,184,0,.1)}
+    .ans.correct{border-color:var(--green);background:rgba(0,200,83,.1);color:var(--green)}
+    .ans.correct .ltr{color:var(--green)}
+    .ans.wrong{border-color:var(--red);background:rgba(255,61,0,.08);color:var(--red)}
+    .ans.wrong .ltr{color:var(--red)}
+    .ans.dim{opacity:.2;pointer-events:none}
+    .ans.locked{cursor:default}
 
-    .explainer{margin-top:14px;padding:12px 16px;background:#080812;border-left:3px solid var(--gold);border-radius:4px;font-size:13px;color:#bbb;line-height:1.7;display:none}
+    /* EXPLAINER */
+    .explainer{margin-top:16px;padding:14px 18px;background:#08080f;border-left:3px solid var(--gold);border-radius:4px;font-size:13px;color:#bbb;line-height:1.75;display:none}
     .explainer.show{display:block;animation:fadeIn .3s ease}
     .explainer strong{color:var(--white)}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-    /* ── CONTROLS ── */
-    .ctrls{display:flex;justify-content:flex-end;margin-top:18px}
-    .btn{font-family:inherit;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;border-radius:8px;cursor:pointer;border:none;transition:all .18s}
-    .btn-main{background:var(--gold);color:#000}
-    .btn-main:hover:not(:disabled){background:#ffca00;transform:translateY(-1px)}
-    .btn-main:disabled{background:#1a1a1a;color:#333;cursor:not-allowed}
+    /* VOTE BUTTONS */
+    .vote-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+    .vote-btn{background:#0d0d18;border:2px solid #1e1e2e;border-radius:8px;padding:18px 20px;cursor:pointer;font-size:18px;font-weight:900;color:var(--white);text-align:center;transition:all .2s;min-width:90px;flex:1;max-width:140px;user-select:none}
+    .vote-btn .vsub{font-size:9px;font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:.07em;margin-top:5px;display:block}
+    .vote-btn:hover:not(.locked){border-color:var(--gold);background:#1a1400;transform:translateY(-2px)}
+    .vote-btn.correct{border-color:var(--green);background:rgba(0,200,83,.1);color:var(--green)}
+    .vote-btn.wrong{border-color:var(--red);background:rgba(255,61,0,.08);opacity:.55}
+    .vote-btn.dim{opacity:.2;pointer-events:none}
+    .vote-btn.locked{cursor:default}
 
-    /* ── WALLY ── */
-    .wally-wrap{border-radius:8px;overflow:hidden;cursor:crosshair;position:relative}
+    /* TAP CARDS */
+    .tap-grid{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+    .tap-card{display:flex;flex-direction:column;align-items:center;gap:7px;padding:18px 12px;border:2px solid #1e1e2e;border-radius:10px;cursor:pointer;transition:all .2s;background:#0d0d18;min-width:90px;max-width:130px;flex:1;user-select:none}
+    .tap-card:hover:not(.locked){border-color:var(--gold);background:#1a1400;transform:translateY(-3px)}
+    .tap-card.correct{border-color:var(--green);background:rgba(0,200,83,.1)}
+    .tap-card.wrong{border-color:var(--red);background:rgba(255,61,0,.08);opacity:.45}
+    .tap-card.dim{opacity:.2;pointer-events:none}
+    .tap-card.locked{cursor:default}
+    .tap-avatar{font-size:38px;line-height:1}
+    .tap-label{font-size:12px;font-weight:800;text-align:center;text-transform:uppercase;letter-spacing:.04em;color:#aaa}
+    .tap-card.correct .tap-label{color:var(--green)}
+
+    /* PROFIT CARDS */
+    .profit-grid{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+    .profit-card{background:#0d0d18;border:2px solid #1e1e2e;border-radius:10px;padding:20px 16px;cursor:pointer;transition:all .2s;flex:1;min-width:120px;max-width:160px;text-align:center;user-select:none}
+    .profit-card:hover:not(.locked){border-color:var(--gold);background:#1a1400;transform:translateY(-2px)}
+    .profit-card.correct{border-color:var(--green);background:rgba(0,200,83,.1)}
+    .profit-card.wrong{border-color:var(--red);background:rgba(255,61,0,.08);opacity:.45}
+    .profit-card.dim{opacity:.2;pointer-events:none}
+    .profit-card.locked{cursor:default}
+    .profit-num{font-size:24px;font-weight:900;color:var(--white)}
+    .profit-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);margin-top:4px}
+    .profit-card.correct .profit-num{color:var(--green)}
+
+    /* THERMOMETER SLIDER */
+    .thermo-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:16px;padding:10px}
+    .thermo-display{font-size:64px;font-weight:900;color:var(--gold);line-height:1;transition:color .2s}
+    .thermo-display .deg{font-size:28px;color:var(--grey)}
+    .thermo-slider{-webkit-appearance:none;appearance:none;width:100%;max-width:440px;height:8px;border-radius:4px;background:linear-gradient(90deg,#0044cc,#cc0000);outline:none;cursor:pointer}
+    .thermo-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:28px;height:28px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid var(--white);box-shadow:0 2px 8px rgba(0,0,0,.4);transition:transform .1s}
+    .thermo-slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
+    .thermo-slider::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid var(--white)}
+    .thermo-hint{font-size:12px;color:var(--grey);letter-spacing:.08em}
+    .thermo-range{display:flex;justify-content:space-between;width:100%;max-width:440px;font-size:11px;color:var(--grey)}
+    .thermo-submit{background:var(--gold);color:#000;border:none;border-radius:8px;padding:12px 28px;font-family:inherit;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .18s}
+    .thermo-submit:hover{background:#ffca00;transform:translateY(-1px)}
+    .thermo-submit:disabled{background:#1c1c1c;color:#333;cursor:not-allowed}
+    .thermo-result{font-size:14px;text-align:center;margin-top:8px;font-weight:700;min-height:20px}
+
+    /* WALLY */
+    .wally-wrap{border-radius:10px;overflow:hidden;cursor:crosshair;position:relative;user-select:none}
     .wally-wrap svg{display:block;width:100%;height:auto}
-    .wally-badge{display:none;margin-top:12px;padding:12px;background:rgba(0,200,83,.12);border:1px solid var(--green);border-radius:8px;text-align:center;font-size:14px;font-weight:700;color:var(--green)}
+    .wally-badge{display:none;margin-top:12px;padding:12px 18px;background:rgba(0,200,83,.1);border:1px solid var(--green);border-radius:8px;text-align:center;font-size:14px;font-weight:700;color:var(--green)}
     .wally-badge.show{display:block;animation:pop .3s ease}
 
-    /* ── BRACKET ── */
+    /* CONTROLS */
+    .ctrls{display:flex;justify-content:flex-end;margin-top:18px}
+    .btn{font-family:inherit;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;border-radius:8px;cursor:pointer;border:none;transition:all .18s}
+    .btn-go{background:var(--gold);color:#000}
+    .btn-go:hover:not(:disabled){background:#ffca00;transform:translateY(-2px)}
+    .btn-go:disabled{background:#1c1c1c;color:#333;cursor:not-allowed}
 
-    .b-connector{position:absolute;right:-7px;top:50%;width:6px;height:50%;border-right:1px solid #333;border-top:1px solid #333;border-radius:0 4px 0 0}
-
-    /* ── RESULTS ── */
-    .results{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:40px 28px;text-align:center;display:none}
+    /* RESULTS */
+    .results{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:44px 28px 36px;text-align:center;display:none}
     .results.show{display:block;animation:pop .4s ease}
-    .big-score{font-size:72px;font-weight:900;color:var(--gold);line-height:1}
-    .big-denom{font-size:24px;color:var(--grey)}
-    .result-headline{font-size:26px;font-weight:800;margin:16px 0 8px}
-    .result-sub{font-size:15px;color:var(--grey);line-height:1.7;max-width:420px;margin:0 auto 28px}
-    .result-stats{display:flex;justify-content:center;gap:32px;margin-bottom:28px;flex-wrap:wrap}
+    .res-emoji{font-size:64px;margin-bottom:10px}
+    .res-score{font-size:80px;font-weight:900;color:var(--gold);line-height:1}
+    .res-denom{font-size:28px;color:var(--grey)}
+    .res-headline{font-size:26px;font-weight:800;margin:16px 0 8px}
+    .res-sub{font-size:15px;color:var(--grey);line-height:1.75;max-width:420px;margin:0 auto 28px}
+    .res-stats{display:flex;justify-content:center;gap:36px;margin-bottom:28px;flex-wrap:wrap}
     .rstat{text-align:center}
-    .rstat-num{font-size:28px;font-weight:900;color:var(--purple)}
-    .rstat-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--grey);margin-top:2px}
-    .share-box{background:#080812;border:1px solid #1a1a3a;border-left:4px solid var(--gold);border-radius:8px;padding:16px 20px;text-align:left;max-width:440px;margin:0 auto}
+    .rstat-n{font-size:28px;font-weight:900;color:var(--purple)}
+    .rstat-l{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--grey);margin-top:3px}
+    .share-box{background:#08080f;border:1px solid #1a1a2a;border-left:4px solid var(--gold);border-radius:8px;padding:16px 20px;text-align:left;max-width:440px;margin:0 auto 24px}
     .share-title{font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
     .share-box p{font-size:14px;color:var(--grey);line-height:1.65}
     .share-box strong{color:var(--white)}
     .teams-pill{display:inline-block;background:#5059C9;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin:0 2px;vertical-align:middle}
 
-
-    /* ── PLAYER PICK ── */
-    .player-grid{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-    .player-card{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;border:2px solid #222;border-radius:10px;cursor:pointer;transition:all .2s;background:#080814;min-width:90px;max-width:110px;flex:1}
-    .player-card:hover:not(.locked){border-color:var(--gold);background:#1a1400;transform:translateY(-3px)}
-    .player-card.selected{border-color:var(--gold);background:#1a1400}
-    .player-card.correct{border-color:var(--green);background:rgba(0,200,83,.1)}
-    .player-card.wrong{border-color:var(--red);background:rgba(255,61,0,.08);opacity:.5}
-    .player-card.locked{cursor:default}
-    .player-avatar{font-size:42px;line-height:1}
-    .player-name{font-size:11px;font-weight:800;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:#aaa}
-    .player-country{font-size:18px}
-    .player-card.correct .player-name{color:var(--green)}
-    .player-card.wrong .player-name{color:var(--red)}
-
-    /* ── SCORELINE ── */
-    .scoreline-wrap{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
-    .score-match{background:#080814;border:2px solid #1a1a2a;border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all .2s;flex:1;min-width:160px;max-width:240px}
-    .score-match:hover:not(.locked){border-color:var(--gold);background:#1a1400;transform:translateY(-2px)}
-    .score-match.selected{border-color:var(--gold);background:#1a1400}
-    .score-match.correct{border-color:var(--green);background:rgba(0,200,83,.1)}
-    .score-match.wrong{border-color:var(--red);background:rgba(255,61,0,.08);opacity:.5}
-    .score-match.locked{cursor:default}
-    .sm-flag{font-size:22px}
-    .sm-score{font-size:20px;font-weight:900;color:var(--white);letter-spacing:2px;flex:1;text-align:center}
-    .sm-team{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#666}
-    .sm-vs{display:flex;flex-direction:column;align-items:center;gap:2px}
-    .score-match.correct .sm-score{color:var(--green)}
-    .score-match.correct .sm-flag{filter:none}
-
-    @media(max-width:600px){
+    @media(max-width:580px){
       .answers{grid-template-columns:1fr}
-      .header-title{font-size:1.4rem}
+      .card{padding:20px 16px}
       .card-q{font-size:17px}
+      .ctrls .btn{width:100%}
+      .ctrls{justify-content:stretch}
+      .vote-btn{min-width:70px}
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="header-flags">🇺🇸 🇲🇽 🇨🇦 ⚽ 🏆</div>
-  <div class="header-title"><span class="wc">World Cup 2026</span> × <span class="ac">S&C Banking</span></div>
-  <div class="header-sub">June Edition · The one with the football</div>
+  <div class="hdr-icons">☀️ 🍦 💸 🏦 🌊</div>
+  <div class="hdr-title"><span class="summer">July 2026</span> × <span class="ac">S&C Banking</span></div>
+  <div class="hdr-sub">Summer Edition · Hot takes. Hot weather. Hot provisions.</div>
 </header>
 
 <div class="hero">
-  <div class="hero-score">
-    <div class="score-pill">Score<span id="scoreDisp">0</span></div>
-    <div class="score-pill">Question<span id="qDisp">1 / 10</span></div>
-    <div class="score-pill">Streak<span id="streakDisp">🔥 0</span></div>
+  <div class="pills">
+    <div class="pill">Score<span id="scoreDisp">0</span></div>
+    <div class="pill">Question<span id="qDisp">1 / 7</span></div>
+    <div class="pill">Streak<span id="streakDisp">🔥 0</span></div>
   </div>
-  <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
-  <div class="progress-label" id="progLabel">0% complete</div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+  <div class="prog-label" id="progLabel">0% complete</div>
 </div>
 
 <div class="shell">
 
-  <!-- ═══ Q1 ═══ -->
+  <!-- ══ Q1 — BoE vote (visual vote buttons) ══ -->
   <div class="card active" id="s0">
-    <div class="card-meta"><span class="card-num">01 / 10</span><span class="card-cat cat-football">🏆 World Cup History</span></div>
-    <p class="card-q"><span class="emoji">🏆</span>Who won the last World Cup before 2026, and where was the final held?</p>
-    <div class="answers">
-      <div class="ans" onclick="pick(0,0)"><span class="letter">A</span>France — Paris, France</div>
-      <div class="ans" onclick="pick(0,1)"><span class="letter">B</span>Argentina — Lusail, Qatar</div>
-      <div class="ans" onclick="pick(0,2)"><span class="letter">C</span>Brazil — Moscow, Russia</div>
-      <div class="ans" onclick="pick(0,3)"><span class="letter">D</span>Argentina — Moscow, Russia</div>
+    <div class="card-meta"><span class="card-num">01 / 07</span><span class="card-cat cat-banking">🏦 Rates</span></div>
+    <p class="card-q"><span class="big">🏦</span>The BoE held at 3.75% on 29 July. But the vote wasn't unanimous — tap the correct split.</p>
+    <div class="vote-row">
+      <div class="vote-btn" onclick="pickVote(0)" id="v0">9–0<span class="vsub">Unanimous</span></div>
+      <div class="vote-btn" onclick="pickVote(1)" id="v1">7–2<span class="vsub">Two to raise</span></div>
+      <div class="vote-btn" onclick="pickVote(2)" id="v2">6–3<span class="vsub">Three to raise</span></div>
+      <div class="vote-btn" onclick="pickVote(3)" id="v3">5–4<span class="vsub">Four to cut</span></div>
     </div>
-    <div class="explainer" id="exp0"><strong>Argentina, Lusail Qatar 🇦🇷</strong> — Messi finally got his hands on the trophy in 2022, beating France on penalties after a 3–3 draw. One of the greatest finals ever. Mbappé got a hat-trick and still lost. Wild.</div>
+    <div class="explainer" id="exp0"><strong>6–3 ⬆️</strong> — Three MPC hawks wanted to raise to 4%, citing the Iran war energy shock keeping inflation above target at 2.6%. The majority held firm, but three dissenters is a loud signal — the next move is not guaranteed to be a cut.</div>
   </div>
 
-  <!-- ═══ Q2 ═══ -->
+  <!-- ══ Q2 — Fun question ══ -->
   <div class="card" id="s1">
-    <div class="card-meta"><span class="card-num">02 / 10</span><span class="card-cat cat-football">🌎 Host Nations</span></div>
-    <p class="card-q"><span class="emoji">🏟️</span>The 2026 World Cup Final is at MetLife Stadium, New Jersey. Tap the flag of that host nation.</p>
-    <div class="player-grid" id="flagGrid1">
-      <div class="player-card" onclick="pickFlag1(0)" id="fg1-0">
-        <div class="player-avatar">🍁</div>
-        <div class="player-country">🇨🇦</div>
-        <div class="player-name">Canada</div>
-      </div>
-      <div class="player-card" onclick="pickFlag1(1)" id="fg1-1">
-        <div class="player-avatar">🦅</div>
-        <div class="player-country">🇺🇸</div>
-        <div class="player-name">USA</div>
-      </div>
-      <div class="player-card" onclick="pickFlag1(2)" id="fg1-2">
-        <div class="player-avatar">🌮</div>
-        <div class="player-country">🇲🇽</div>
-        <div class="player-name">Mexico</div>
-      </div>
-      <div class="player-card" onclick="pickFlag1(3)" id="fg1-3">
-        <div class="player-avatar">🧉</div>
-        <div class="player-country">🇧🇷</div>
-        <div class="player-name">Brazil</div>
-      </div>
+    <div class="card-meta"><span class="card-num">02 / 07</span><span class="card-cat cat-fun">😄 Pub Quiz</span></div>
+    <p class="card-q"><span class="big">🍦</span>Ice cream sales in the UK spike every heatwave — but which flavour is the UK's all-time best seller?</p>
+    <div class="answers">
+      <div class="ans" onclick="pickMCQ('icecream',0,1)"><span class="ltr">A</span>Chocolate 🍫</div>
+      <div class="ans" onclick="pickMCQ('icecream',1,1)"><span class="ltr">B</span>Vanilla 🍦</div>
+      <div class="ans" onclick="pickMCQ('icecream',2,1)"><span class="ltr">C</span>Strawberry 🍓</div>
+      <div class="ans" onclick="pickMCQ('icecream',3,1)"><span class="ltr">D</span>Mint choc chip 🌿</div>
     </div>
-    <div class="explainer" id="exp1"><strong>USA 🇺🇸 🦅</strong> — MetLife Stadium in East Rutherford, New Jersey hosts the final on 19 July. It holds 82,500 fans. The three co-hosts are USA, Mexico and Canada — not Brazil, who are just a very frequent visitor.</div>
+    <div class="explainer" id="exp1"><strong>Vanilla 🍦</strong> — Boring but correct. Vanilla has been the UK's top selling ice cream flavour for decades. It accounts for nearly a third of all ice cream sold. Chocolate is second, strawberry third. Mint choc chip fans are loud but apparently not that numerous. Like hawk voters on the MPC.</div>
   </div>
 
-  <!-- ═══ Q3 ═══ -->
+  <!-- ══ Q3 — Barclays H1 profit (tap card) ══ -->
   <div class="card" id="s2">
-    <div class="card-meta"><span class="card-num">03 / 10</span><span class="card-cat cat-football">🇳🇴 Giant Killing</span></div>
-    <p class="card-q"><span class="emoji">😱</span>Norway sent Brazil home in the Round of 16. What was the scoreline? Tap it.</p>
-    <div class="scoreline-wrap" id="norwayScores">
-      <div class="score-match" onclick="pickNorway(0)" id="ns0">
-        <div class="sm-vs"><div class="sm-flag">🇳🇴</div><div class="sm-team">NOR</div></div>
-        <div class="sm-score">1 – 0</div>
-        <div class="sm-vs"><div class="sm-flag">🇧🇷</div><div class="sm-team">BRA</div></div>
-      </div>
-      <div class="score-match" onclick="pickNorway(1)" id="ns1">
-        <div class="sm-vs"><div class="sm-flag">🇳🇴</div><div class="sm-team">NOR</div></div>
-        <div class="sm-score">2 – 1</div>
-        <div class="sm-vs"><div class="sm-flag">🇧🇷</div><div class="sm-team">BRA</div></div>
-      </div>
-      <div class="score-match" onclick="pickNorway(2)" id="ns2">
-        <div class="sm-vs"><div class="sm-flag">🇧🇷</div><div class="sm-team">BRA</div></div>
-        <div class="sm-score">2 – 1</div>
-        <div class="sm-vs"><div class="sm-flag">🇳🇴</div><div class="sm-team">NOR</div></div>
-      </div>
-      <div class="score-match" onclick="pickNorway(3)" id="ns3">
-        <div class="sm-vs"><div class="sm-flag">🇳🇴</div><div class="sm-team">NOR</div></div>
-        <div class="sm-score">3 – 1</div>
-        <div class="sm-vs"><div class="sm-flag">🇧🇷</div><div class="sm-team">BRA</div></div>
-      </div>
+    <div class="card-meta"><span class="card-num">03 / 07</span><span class="card-cat cat-banking">📊 Bank Results</span></div>
+    <p class="card-q"><span class="big">📊</span>Barclays dropped H1 2026 results on 28 July. Tap the correct pre-tax profit — up from £5.2bn last year.</p>
+    <div class="profit-grid">
+      <div class="profit-card" onclick="pickProfit(0)" id="pc0"><div class="profit-num">£3.8bn</div><div class="profit-label">H1 2026</div></div>
+      <div class="profit-card" onclick="pickProfit(1)" id="pc1"><div class="profit-num">£5.9bn</div><div class="profit-label">H1 2026</div></div>
+      <div class="profit-card" onclick="pickProfit(2)" id="pc2"><div class="profit-num">£7.4bn</div><div class="profit-label">H1 2026</div></div>
+      <div class="profit-card" onclick="pickProfit(3)" id="pc3"><div class="profit-num">£4.2bn</div><div class="profit-label">H1 2026</div></div>
     </div>
-    <div class="explainer" id="exp2"><strong>Norway 2 – 1 Brazil 🇳🇴</strong> — Haaland struck as Norway knocked out five-time champions Brazil in the Round of 16. Vinícius Júnior pulled one back late but it wasn't enough. Brazil haven't won since 2002. Norway had never been this far. Football is mad.</div>
+    <div class="explainer" id="exp2"><strong>£5.9bn 💰</strong> — Up from £5.2bn in H1 2025. Higher rates are still helping NII, and the investment banking arm had a strong half. Lloyds came in at ~£4.1bn. The catch? All three big banks flagged rising provisions as the Iran war clouds the credit outlook.</div>
   </div>
 
-  <!-- ═══ Q4 ═══ -->
+  <!-- ══ INTERACTIVE — Thermometer: guess July peak temp ══ -->
   <div class="card" id="s3">
-    <div class="card-meta"><span class="card-num">04 / 10</span><span class="card-cat cat-football">⭐ Star of the Tournament</span></div>
-    <p class="card-q"><span class="emoji">⭐</span>Tap the player who's been the tournament's standout star so far.</p>
-    <div class="player-grid" id="playerGrid">
-      <div class="player-card" onclick="pickPlayer(0)" id="pc0">
-        <div class="player-avatar">🥷</div>
-        <div class="player-country">🇫🇷</div>
-        <div class="player-name">Mbappé</div>
-      </div>
-      <div class="player-card" onclick="pickPlayer(1)" id="pc1">
-        <div class="player-avatar">🦾</div>
-        <div class="player-country">🇳🇴</div>
-        <div class="player-name">Haaland</div>
-      </div>
-      <div class="player-card" onclick="pickPlayer(2)" id="pc2">
-        <div class="player-avatar">🌟</div>
-        <div class="player-country">🇪🇸</div>
-        <div class="player-name">Yamal</div>
-      </div>
-      <div class="player-card" onclick="pickPlayer(3)" id="pc3">
-        <div class="player-avatar">🐐</div>
-        <div class="player-country">🇦🇷</div>
-        <div class="player-name">Messi</div>
-      </div>
+    <div class="card-meta"><span class="card-num">Interactive</span><span class="card-cat cat-visual">🌡️ Guess the Heatwave</span></div>
+    <p class="card-q"><span class="big">🌡️</span>July 2026 saw another UK heatwave. Drag the slider to guess the peak temperature recorded — then lock it in.</p>
+    <div class="thermo-wrap">
+      <div class="thermo-display"><span id="thermoVal">28</span><span class="deg">°C</span></div>
+      <div class="thermo-range"><span>20°C 🧊</span><span>42°C 🔥</span></div>
+      <input type="range" class="thermo-slider" id="thermoSlider" min="20" max="42" value="28" oninput="updateThermo()"/>
+      <div class="thermo-hint">Slide to your best guess, then submit</div>
+      <button class="thermo-submit" id="thermoSubmit" onclick="submitThermo()">Lock it in 🔒</button>
+      <div class="thermo-result" id="thermoResult"></div>
     </div>
-    <div class="explainer" id="exp3"><strong>Erling Haaland 🦾🇳🇴</strong> — The machine from Bodø has been unstoppable. Norway knocked out Brazil with Haaland pulling the strings, and he's gunning for the Golden Boot. The whole tournament has been the Erling Show.</div>
+    <div class="explainer" id="exp3"><strong>The answer was 36.5°C 🌡️</strong> — Recorded in London during the July heatwave, breaking the previous July record. The Met Office issued its first ever red warning for heat in parts of England for the third consecutive summer. The air con in the office has never worked harder. Nor has anyone checked their mortgage rate more anxiously.</div>
   </div>
 
-  <!-- ═══ Q5 ═══ -->
+  <!-- ══ WALLY ══ -->
   <div class="card" id="s4">
-    <div class="card-meta"><span class="card-num">05 / 10</span><span class="card-cat cat-football">⚽ England Results</span></div>
-    <p class="card-q"><span class="emoji">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>Which of these was England's actual group stage scoreline — tap the real result.</p>
-    <div class="scoreline-wrap" id="scorelineWrap">
-      <div class="score-match" onclick="pickScore(0)" id="sm0">
-        <div class="sm-vs">
-          <div class="sm-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-          <div class="sm-team">ENG</div>
-        </div>
-        <div class="sm-score">3 – 0</div>
-        <div class="sm-vs">
-          <div class="sm-flag">🇨🇷</div>
-          <div class="sm-team">CRO</div>
-        </div>
-      </div>
-      <div class="score-match" onclick="pickScore(1)" id="sm1">
-        <div class="sm-vs">
-          <div class="sm-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-          <div class="sm-team">ENG</div>
-        </div>
-        <div class="sm-score">4 – 2</div>
-        <div class="sm-vs">
-          <div class="sm-flag">🇨🇷</div>
-          <div class="sm-team">CRO</div>
-        </div>
-      </div>
-      <div class="score-match" onclick="pickScore(2)" id="sm2">
-        <div class="sm-vs">
-          <div class="sm-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-          <div class="sm-team">ENG</div>
-        </div>
-        <div class="sm-score">2 – 1</div>
-        <div class="sm-vs">
-          <div class="sm-flag">🇨🇷</div>
-          <div class="sm-team">CRO</div>
-        </div>
-      </div>
-      <div class="score-match" onclick="pickScore(3)" id="sm3">
-        <div class="sm-vs">
-          <div class="sm-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-          <div class="sm-team">ENG</div>
-        </div>
-        <div class="sm-score">1 – 0</div>
-        <div class="sm-vs">
-          <div class="sm-flag">🇨🇷</div>
-          <div class="sm-team">CRO</div>
-        </div>
-      </div>
-    </div>
-    <div class="explainer" id="exp4"><strong>4 – 2 against Croatia ⚽</strong> — England came from behind in Dallas. Kane with two (including a pen), Bellingham on the hour, Rashford to seal it. Classic England — nearly a heart attack, then actually pretty comfortable.</div>
-  </div>
-
-  <!-- ═══ Q6 ═══ -->
-  <div class="card" id="s6">
-    <div class="card-meta"><span class="card-num">06 / 10</span><span class="card-cat cat-football">📊 Tournament Facts</span></div>
-    <p class="card-q"><span class="emoji">📊</span>How many teams are competing at the 2026 World Cup? Tap the right number.</p>
-    <div class="player-grid" id="numGrid">
-      <div class="player-card" onclick="pickNum(0)" id="ng0">
-        <div class="player-avatar" style="font-size:36px;font-weight:900">32</div>
-        <div class="player-name">Teams</div>
-      </div>
-      <div class="player-card" onclick="pickNum(1)" id="ng1">
-        <div class="player-avatar" style="font-size:36px;font-weight:900">40</div>
-        <div class="player-name">Teams</div>
-      </div>
-      <div class="player-card" onclick="pickNum(2)" id="ng2">
-        <div class="player-avatar" style="font-size:36px;font-weight:900">48</div>
-        <div class="player-name">Teams</div>
-      </div>
-      <div class="player-card" onclick="pickNum(3)" id="ng3">
-        <div class="player-avatar" style="font-size:36px;font-weight:900">64</div>
-        <div class="player-name">Teams</div>
-      </div>
-    </div>
-    <div class="explainer" id="expq6"><strong>48 teams 📊</strong> — Up from 32 in previous tournaments. The extra teams come from expanded AFC, CAF and CONCACAF allocations. More games (104 total), more upsets, more penalty shootouts at 1am. Everyone wins.</div>
-  </div>
-
-  <!-- ═══ Q7 ═══ -->
-  <div class="card" id="s7">
-    <div class="card-meta"><span class="card-num">07 / 10</span><span class="card-cat cat-football">🏆 All-Time Records</span></div>
-    <p class="card-q"><span class="emoji">🏅</span>Which country has won the most World Cups of all time? Tap their flag.</p>
-    <div class="player-grid" id="champGrid">
-      <div class="player-card" onclick="pickChamp(0)" id="cg0">
-        <div class="player-avatar">🇩🇪</div>
-        <div class="player-name">Germany</div>
-      </div>
-      <div class="player-card" onclick="pickChamp(1)" id="cg1">
-        <div class="player-avatar">🇮🇹</div>
-        <div class="player-name">Italy</div>
-      </div>
-      <div class="player-card" onclick="pickChamp(2)" id="cg2">
-        <div class="player-avatar">🇧🇷</div>
-        <div class="player-name">Brazil</div>
-      </div>
-      <div class="player-card" onclick="pickChamp(3)" id="cg3">
-        <div class="player-avatar">🇫🇷</div>
-        <div class="player-name">France</div>
-      </div>
-    </div>
-    <div class="explainer" id="expq7"><strong>Brazil 🇧🇷 — 5 titles</strong> — 1958, 1962, 1970, 1994, 2002. No other nation comes close. Germany and Italy are on 4. Argentina recently joined them on 3 with the 2022 win. Brazil haven't lifted the trophy since 2002 — and Haaland just ended their 2026 campaign too.</div>
-  </div>
-
-  <!-- ═══ WHERE'S WALLY ═══ -->
-  <div class="card" id="s8">
-    <div class="card-meta"><span class="card-num">Bonus</span><span class="card-cat cat-wally">🕵️ Where's Wally?</span></div>
-    <p class="card-q"><span class="emoji">🔴⚪</span>Wally snuck into the World Cup 2026 stadium. Can you find him in the crowd? +1 bonus point if you do.</p>
+    <div class="card-meta"><span class="card-num">Bonus 🎁</span><span class="card-cat cat-wally">🕵️ Where's Wally?</span></div>
+    <p class="card-q"><span class="big">🔍</span>Wally crashed the Accenture S&C summer rooftop BBQ. Find him in the crowd. No hints. +1 bonus point.</p>
     <div class="wally-wrap" id="wallyWrap">
-      <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#0a1428"/>
-            <stop offset="100%" stop-color="#1a2845"/>
+            <stop offset="0%" stop-color="#87CEEB"/>
+            <stop offset="70%" stop-color="#b8e8ff"/>
+            <stop offset="100%" stop-color="#d8f4ff"/>
           </linearGradient>
-          <linearGradient id="roofG" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#1a1a2a"/>
-            <stop offset="100%" stop-color="#2a1a3a"/>
+          <linearGradient id="floorG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#c8a870"/>
+            <stop offset="100%" stop-color="#a88850"/>
           </linearGradient>
         </defs>
-        <!-- Sky -->
-        <rect width="900" height="380" fill="url(#skyG)"/>
-        <!-- Roof -->
-        <rect x="0" y="0" width="900" height="40" fill="url(#roofG)"/>
-        <rect x="0" y="38" width="900" height="4" fill="#A100FF"/>
-        <!-- Stadium lights -->
-        <rect x="60" y="5" width="30" height="12" rx="2" fill="#fff" opacity=".9"/>
-        <ellipse cx="75" cy="17" rx="20" ry="8" fill="#ffffd0" opacity=".3"/>
-        <rect x="810" y="5" width="30" height="12" rx="2" fill="#fff" opacity=".9"/>
-        <ellipse cx="825" cy="17" rx="20" ry="8" fill="#ffffd0" opacity=".3"/>
-        <!-- Scoreboard -->
-        <rect x="330" y="5" width="240" height="32" rx="3" fill="#050510"/>
-        <rect x="330" y="5" width="240" height="32" rx="3" fill="none" stroke="#333" stroke-width="1"/>
-        <text x="380" y="22" font-family="monospace" font-size="9" fill="#888">ENGLAND</text>
-        <text x="380" y="32" font-family="monospace" font-size="14" font-weight="700" fill="#00ff44">2</text>
-        <text x="520" y="22" font-family="monospace" font-size="9" fill="#888">DR CONGO</text>
-        <text x="520" y="32" font-family="monospace" font-size="14" font-weight="700" fill="#ff4444">1</text>
-        <line x1="450" y1="8" x2="450" y2="34" stroke="#222" stroke-width="1"/>
-        <text x="450" y="26" font-family="monospace" font-size="9" fill="#666" text-anchor="middle">FT</text>
-        <!-- World Cup banner -->
-        <rect x="100" y="8" width="160" height="26" rx="2" fill="#cc0000"/>
-        <text x="180" y="25" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">FIFA WORLD CUP 2026™</text>
-        <rect x="640" y="8" width="160" height="26" rx="2" fill="#003399"/>
-        <text x="720" y="25" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">ACCENTURE HOSPITALITY</text>
+        <rect width="1000" height="480" fill="url(#skyG)"/>
+        <!-- Clouds -->
+        <ellipse cx="100" cy="42" rx="65" ry="22" fill="white" opacity=".88"/>
+        <ellipse cx="140" cy="34" rx="48" ry="18" fill="white" opacity=".88"/>
+        <ellipse cx="380" cy="28" rx="58" ry="20" fill="white" opacity=".75"/>
+        <ellipse cx="680" cy="38" rx="72" ry="24" fill="white" opacity=".8"/>
+        <ellipse cx="900" cy="50" rx="60" ry="18" fill="white" opacity=".7"/>
+        <!-- Sun -->
+        <circle cx="940" cy="55" r="40" fill="#FFD700" opacity=".85"/>
+        <line x1="940" y1="5" x2="940" y2="-3" stroke="#FFD700" stroke-width="3" opacity=".6"/>
+        <line x1="940" y1="105" x2="940" y2="113" stroke="#FFD700" stroke-width="3" opacity=".6"/>
+        <line x1="885" y1="55" x2="877" y2="55" stroke="#FFD700" stroke-width="3" opacity=".6"/>
+        <line x1="972" y1="25" x2="980" y2="17" stroke="#FFD700" stroke-width="3" opacity=".6"/>
+        <line x1="908" y1="25" x2="900" y2="17" stroke="#FFD700" stroke-width="3" opacity=".6"/>
+        <line x1="972" y1="85" x2="980" y2="93" stroke="#FFD700" stroke-width="3" opacity=".6"/>
+        <!-- Rooftop -->
+        <rect x="0" y="118" width="1000" height="24" fill="#14003a"/>
+        <text x="500" y="134" font-family="Arial" font-size="11" font-weight="700" fill="#A100FF" text-anchor="middle" letter-spacing="3">ACCENTURE  S&amp;C  BANKING  SUMMER  SOCIAL  2026  ☀️</text>
+        <rect x="0" y="140" width="1000" height="340" fill="url(#floorG)"/>
+        <!-- Floor tiles -->
+        <line x1="0" y1="180" x2="1000" y2="180" stroke="#b09060" stroke-width="1" opacity=".3"/>
+        <line x1="0" y1="220" x2="1000" y2="220" stroke="#b09060" stroke-width="1" opacity=".3"/>
+        <line x1="0" y1="260" x2="1000" y2="260" stroke="#b09060" stroke-width="1" opacity=".3"/>
+        <line x1="0" y1="300" x2="1000" y2="300" stroke="#b09060" stroke-width="1" opacity=".3"/>
+        <line x1="0" y1="340" x2="1000" y2="340" stroke="#b09060" stroke-width="1" opacity=".3"/>
+        <line x1="0" y1="380" x2="1000" y2="380" stroke="#b09060" stroke-width="1" opacity=".3"/>
+        <line x1="125" y1="140" x2="125" y2="480" stroke="#b09060" stroke-width="1" opacity=".22"/>
+        <line x1="250" y1="140" x2="250" y2="480" stroke="#b09060" stroke-width="1" opacity=".22"/>
+        <line x1="375" y1="140" x2="375" y2="480" stroke="#b09060" stroke-width="1" opacity=".22"/>
+        <line x1="500" y1="140" x2="500" y2="480" stroke="#b09060" stroke-width="1" opacity=".22"/>
+        <line x1="625" y1="140" x2="625" y2="480" stroke="#b09060" stroke-width="1" opacity=".22"/>
+        <line x1="750" y1="140" x2="750" y2="480" stroke="#b09060" stroke-width="1" opacity=".22"/>
+        <line x1="875" y1="140" x2="875" y2="480" stroke="#b09060" stroke-width="1" opacity=".22"/>
 
-        <!-- ── PITCH (bottom strip) ── -->
-        <rect x="0" y="330" width="900" height="50" fill="#1a4a1a"/>
-        <ellipse cx="450" cy="355" rx="120" ry="25" fill="#2d7a2d"/>
-        <line x1="450" y1="330" x2="450" y2="380" stroke="white" stroke-width="1" opacity=".4"/>
+        <!-- Bunting flags -->
+        <line x1="0" y1="143" x2="1000" y2="143" stroke="#333" stroke-width="1"/>
+        <polygon points="40,143 52,143 46,160" fill="#cc0000"/>
+        <polygon points="56,143 68,143 62,160" fill="#A100FF"/>
+        <polygon points="72,143 84,143 78,160" fill="#cc0000"/>
+        <polygon points="88,143 100,143 94,160" fill="#A100FF"/>
+        <polygon points="180,143 192,143 186,160" fill="#cc0000"/>
+        <polygon points="196,143 208,143 202,160" fill="#A100FF"/>
+        <polygon points="360,143 372,143 366,160" fill="#cc0000"/>
+        <polygon points="376,143 388,143 382,160" fill="#A100FF"/>
+        <polygon points="520,143 532,143 526,160" fill="#cc0000"/>
+        <polygon points="536,143 548,143 542,160" fill="#A100FF"/>
+        <polygon points="660,143 672,143 666,160" fill="#cc0000"/>
+        <polygon points="676,143 688,143 682,160" fill="#A100FF"/>
+        <polygon points="800,143 812,143 806,160" fill="#cc0000"/>
+        <polygon points="816,143 828,143 822,160" fill="#A100FF"/>
+        <polygon points="910,143 922,143 916,160" fill="#cc0000"/>
+        <polygon points="936,143 948,143 942,160" fill="#A100FF"/>
+        <polygon points="962,143 974,143 968,160" fill="#cc0000"/>
 
-        <!-- ── STAND SECTIONS ── -->
-        <!-- Section A - Lower left -->
-        <rect x="0" y="42" width="280" height="290" fill="#0e0e1e"/>
-        <line x1="0" y1="100" x2="280" y2="100" stroke="#1a1a2a" stroke-width="1"/>
-        <line x1="0" y1="160" x2="280" y2="160" stroke="#1a1a2a" stroke-width="1"/>
-        <line x1="0" y1="220" x2="280" y2="220" stroke="#1a1a2a" stroke-width="1"/>
-        <line x1="0" y1="280" x2="280" y2="280" stroke="#1a1a2a" stroke-width="1"/>
-        <!-- Section B - Centre -->
-        <rect x="290" y="42" width="320" height="290" fill="#0c0c1c"/>
-        <line x1="290" y1="100" x2="610" y2="100" stroke="#1a1a2a" stroke-width="1"/>
-        <line x1="290" y1="160" x2="610" y2="160" stroke="#1a1a2a" stroke-width="1"/>
-        <line x1="290" y1="220" x2="610" y2="220" stroke="#1a1a2a" stroke-width="1"/>
-        <line x1="290" y1="280" x2="610" y2="280" stroke="#1a1a2a" stroke-width="1"/>
-        <!-- Section C - Right -->
-        <rect x="620" y="42" width="280" height="290" fill="#0e0e1e"/>
-        <line x1="620" y1="100" x2="900" y2="100" stroke="#1a1a2a" stroke-width="1"/>
-        <line x1="620" y1="160" x2="900" y2="160" stroke="#1a1a2a" stroke-width="1"/>
-        <line x1="620" y1="220" x2="900" y2="220" stroke="#1a1a2a" stroke-width="1"/>
-        <line x1="620" y1="280" x2="900" y2="280" stroke="#1a1a2a" stroke-width="1"/>
+        <!-- BBQ left -->
+        <ellipse cx="78" cy="268" rx="55" ry="15" fill="#2a2a2a"/>
+        <rect x="36" y="268" width="84" height="7" rx="2" fill="#3a3a3a"/>
+        <rect x="44" y="275" width="5" height="34" fill="#444"/>
+        <rect x="111" y="275" width="5" height="34" fill="#444"/>
+        <ellipse cx="78" cy="266" rx="50" ry="13" fill="#1a1a1a"/>
+        <rect x="50" y="258" width="13" height="6" rx="2" fill="#8B4513"/>
+        <rect x="68" y="258" width="13" height="6" rx="2" fill="#7a3810"/>
+        <rect x="86" y="258" width="13" height="6" rx="2" fill="#8B4513"/>
+        <line x1="38" y1="260" x2="118" y2="260" stroke="#444" stroke-width="1.5"/>
+        <line x1="38" y1="263" x2="118" y2="263" stroke="#444" stroke-width="1.5"/>
+        <ellipse cx="64" cy="244" rx="7" ry="11" fill="#aaa" opacity=".18"/>
+        <ellipse cx="78" cy="234" rx="6" ry="9" fill="#aaa" opacity=".16"/>
+        <ellipse cx="92" cy="242" rx="7" ry="12" fill="#aaa" opacity=".18"/>
+        <!-- chef -->
+        <circle cx="78" cy="210" r="15" fill="#f5c9a0"/>
+        <rect x="63" y="225" width="30" height="24" rx="2" fill="white"/>
+        <rect x="76" y="196" width="24" height="16" rx="3" fill="white"/>
+        <rect x="74" y="208" width="28" height="4" rx="1" fill="#ddd"/>
+        <rect x="63" y="249" width="12" height="28" fill="#1a1a4e"/>
+        <rect x="77" y="249" width="12" height="28" fill="#1a1a4e"/>
 
-        <!-- ══ CROWD MACROS — rows of heads + shirts ══ -->
-        <!-- Helper: generate rows programmatically would be ideal but SVG is static -->
-        <!-- Row 1 y=60 (tiny back row) -->
-        <circle cx="8" cy="62" r="4" fill="#e0b078"/><circle cx="18" cy="60" r="4" fill="#f5c9a0"/><circle cx="28" cy="62" r="4" fill="#c87850"/><circle cx="38" cy="60" r="4" fill="#f0c090"/><circle cx="48" cy="62" r="4" fill="#d4956a"/><circle cx="58" cy="60" r="4" fill="#f5d0a0"/><circle cx="68" cy="62" r="4" fill="#e0b078"/><circle cx="78" cy="60" r="4" fill="#c8845a"/><circle cx="88" cy="62" r="4" fill="#f5c9a0"/><circle cx="98" cy="60" r="4" fill="#d09060"/><circle cx="108" cy="62" r="4" fill="#f0c8a0"/><circle cx="118" cy="60" r="4" fill="#e8b470"/><circle cx="128" cy="62" r="4" fill="#f5c9a0"/><circle cx="138" cy="60" r="4" fill="#c87850"/><circle cx="148" cy="62" r="4" fill="#d4956a"/><circle cx="158" cy="60" r="4" fill="#f0d0b0"/><circle cx="168" cy="62" r="4" fill="#e8b890"/><circle cx="178" cy="60" r="4" fill="#f5c8a0"/><circle cx="188" cy="62" r="4" fill="#c87850"/><circle cx="198" cy="60" r="4" fill="#d09060"/><circle cx="208" cy="62" r="4" fill="#f0c090"/><circle cx="218" cy="60" r="4" fill="#e8b470"/><circle cx="228" cy="62" r="4" fill="#f5c9a0"/><circle cx="238" cy="60" r="4" fill="#d4956a"/><circle cx="248" cy="62" r="4" fill="#f0d0b0"/><circle cx="258" cy="60" r="4" fill="#c87850"/><circle cx="268" cy="62" r="4" fill="#f5c8a0"/><circle cx="278" cy="60" r="4" fill="#e0b070"/>
-        <rect x="4" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="14" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="24" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="34" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="44" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="54" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="64" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="74" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="84" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="94" y="66" width="8" height="5" rx="1" fill="#1a3a6e"/><rect x="104" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="114" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="124" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="134" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="144" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="154" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="164" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="174" y="66" width="8" height="5" rx="1" fill="#1a3a6e"/><rect x="184" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="194" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="204" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="214" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="224" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="234" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="244" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="254" y="66" width="8" height="5" rx="1" fill="#1a3a6e"/><rect x="264" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="274" y="66" width="8" height="5" rx="1" fill="#fff"/>
-        <!-- Row 2 y=80 -->
-        <circle cx="8" cy="82" r="4" fill="#f5c9a0"/><circle cx="18" cy="80" r="4" fill="#d4956a"/><circle cx="28" cy="82" r="4" fill="#f0c090"/><circle cx="38" cy="80" r="4" fill="#c87850"/><circle cx="48" cy="82" r="4" fill="#f5d0a0"/><circle cx="58" cy="80" r="4" fill="#e8b470"/><circle cx="68" cy="82" r="4" fill="#d09060"/><circle cx="78" cy="80" r="4" fill="#f0c8a0"/><circle cx="88" cy="82" r="4" fill="#e8b890"/><circle cx="98" cy="80" r="4" fill="#f5c8a0"/><circle cx="108" cy="82" r="4" fill="#c87850"/><circle cx="118" cy="80" r="4" fill="#d4956a"/><circle cx="128" cy="82" r="4" fill="#f0d0b0"/><circle cx="138" cy="80" r="4" fill="#e0b078"/><circle cx="148" cy="82" r="4" fill="#f5c9a0"/><circle cx="158" cy="80" r="4" fill="#c8845a"/><circle cx="168" cy="82" r="4" fill="#d09060"/><circle cx="178" cy="80" r="4" fill="#f0c090"/><circle cx="188" cy="82" r="4" fill="#e8b470"/><circle cx="198" cy="80" r="4" fill="#f5c9a0"/><circle cx="208" cy="82" r="4" fill="#d4956a"/><circle cx="218" cy="80" r="4" fill="#f0d0b0"/><circle cx="228" cy="82" r="4" fill="#c87850"/><circle cx="238" cy="80" r="4" fill="#e8b890"/><circle cx="248" cy="82" r="4" fill="#f5c8a0"/><circle cx="258" cy="80" r="4" fill="#d09060"/><circle cx="268" cy="82" r="4" fill="#f0c8a0"/><circle cx="278" cy="80" r="4" fill="#e0b070"/>
-        <rect x="4" y="86" width="8" height="5" rx="1" fill="#fff"/><rect x="14" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="24" y="86" width="8" height="5" rx="1" fill="#1a3a6e"/><rect x="34" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="44" y="86" width="8" height="5" rx="1" fill="#fff"/><rect x="54" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="64" y="86" width="8" height="5" rx="1" fill="#003399"/><rect x="74" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="84" y="86" width="8" height="5" rx="1" fill="#fff"/><rect x="94" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="104" y="86" width="8" height="5" rx="1" fill="#1a3a6e"/><rect x="114" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="124" y="86" width="8" height="5" rx="1" fill="#fff"/><rect x="134" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="144" y="86" width="8" height="5" rx="1" fill="#003399"/><rect x="154" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="164" y="86" width="8" height="5" rx="1" fill="#fff"/><rect x="174" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="184" y="86" width="8" height="5" rx="1" fill="#1a3a6e"/><rect x="194" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="204" y="86" width="8" height="5" rx="1" fill="#fff"/><rect x="214" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="224" y="86" width="8" height="5" rx="1" fill="#003399"/><rect x="234" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="244" y="86" width="8" height="5" rx="1" fill="#fff"/><rect x="254" y="86" width="8" height="5" rx="1" fill="#cc0000"/><rect x="264" y="86" width="8" height="5" rx="1" fill="#1a3a6e"/><rect x="274" y="86" width="8" height="5" rx="1" fill="#cc0000"/>
-        <!-- Rows 3-5 (y=100-160) left section -->
-        <circle cx="8" cy="112" r="5" fill="#f5c9a0"/><circle cx="22" cy="110" r="5" fill="#d4956a"/><circle cx="36" cy="112" r="5" fill="#f0c090"/><circle cx="50" cy="110" r="5" fill="#c87850"/><circle cx="64" cy="112" r="5" fill="#f5d0a0"/><circle cx="78" cy="110" r="5" fill="#e0b078"/><circle cx="92" cy="112" r="5" fill="#d09060"/><circle cx="106" cy="110" r="5" fill="#f0c8a0"/><circle cx="120" cy="112" r="5" fill="#e8b470"/><circle cx="134" cy="110" r="5" fill="#f5c9a0"/><circle cx="148" cy="112" r="5" fill="#c8845a"/><circle cx="162" cy="110" r="5" fill="#d4956a"/><circle cx="176" cy="112" r="5" fill="#f0d0b0"/><circle cx="190" cy="110" r="5" fill="#e8b890"/><circle cx="204" cy="112" r="5" fill="#f5c8a0"/><circle cx="218" cy="110" r="5" fill="#c87850"/><circle cx="232" cy="112" r="5" fill="#d09060"/><circle cx="246" cy="110" r="5" fill="#f0c090"/><circle cx="260" cy="112" r="5" fill="#e8b470"/><circle cx="274" cy="110" r="5" fill="#f5c9a0"/>
-        <rect x="3" y="117" width="10" height="7" rx="1" fill="#cc0000"/><rect x="17" y="117" width="10" height="7" rx="1" fill="#1a3a6e"/><rect x="31" y="117" width="10" height="7" rx="1" fill="#cc0000"/><rect x="45" y="117" width="10" height="7" rx="1" fill="#fff"/><rect x="59" y="117" width="10" height="7" rx="1" fill="#cc0000"/><rect x="73" y="117" width="10" height="7" rx="1" fill="#003399"/><rect x="87" y="117" width="10" height="7" rx="1" fill="#cc0000"/><rect x="101" y="117" width="10" height="7" rx="1" fill="#fff"/><rect x="115" y="117" width="10" height="7" rx="1" fill="#cc0000"/><rect x="129" y="117" width="10" height="7" rx="1" fill="#1a3a6e"/><rect x="143" y="117" width="10" height="7" rx="1" fill="#cc0000"/><rect x="157" y="117" width="10" height="7" rx="1" fill="#fff"/><rect x="171" y="117" width="10" height="7" rx="1" fill="#cc0000"/><rect x="185" y="117" width="10" height="7" rx="1" fill="#003399"/><rect x="199" y="117" width="10" height="7" rx="1" fill="#cc0000"/><rect x="213" y="117" width="10" height="7" rx="1" fill="#fff"/><rect x="227" y="117" width="10" height="7" rx="1" fill="#cc0000"/><rect x="241" y="117" width="10" height="7" rx="1" fill="#1a3a6e"/><rect x="255" y="117" width="10" height="7" rx="1" fill="#cc0000"/><rect x="269" y="117" width="10" height="7" rx="1" fill="#fff"/>
-        <!-- row y=140 -->
-        <circle cx="8" cy="142" r="5" fill="#d4956a"/><circle cx="22" cy="140" r="5" fill="#f5c9a0"/><circle cx="36" cy="142" r="5" fill="#c87850"/><circle cx="50" cy="140" r="5" fill="#f0d0b0"/><circle cx="64" cy="142" r="5" fill="#e8b470"/><circle cx="78" cy="140" r="5" fill="#f5c8a0"/><circle cx="92" cy="142" r="5" fill="#d09060"/><circle cx="106" cy="140" r="5" fill="#f0c090"/><circle cx="120" cy="142" r="5" fill="#f5c9a0"/><circle cx="134" cy="140" r="5" fill="#c8845a"/><circle cx="148" cy="142" r="5" fill="#d4956a"/><circle cx="162" cy="140" r="5" fill="#f0d0b0"/><circle cx="176" cy="142" r="5" fill="#e8b890"/><circle cx="190" cy="140" r="5" fill="#f5c8a0"/><circle cx="204" cy="142" r="5" fill="#c87850"/><circle cx="218" cy="140" r="5" fill="#d09060"/><circle cx="232" cy="142" r="5" fill="#f0c8a0"/><circle cx="246" cy="140" r="5" fill="#e8b470"/><circle cx="260" cy="142" r="5" fill="#f5c9a0"/><circle cx="274" cy="140" r="5" fill="#d4956a"/>
-        <rect x="3" y="147" width="10" height="7" rx="1" fill="#1a3a6e"/><rect x="17" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="31" y="147" width="10" height="7" rx="1" fill="#fff"/><rect x="45" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="59" y="147" width="10" height="7" rx="1" fill="#003399"/><rect x="73" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="87" y="147" width="10" height="7" rx="1" fill="#fff"/><rect x="101" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="115" y="147" width="10" height="7" rx="1" fill="#1a3a6e"/><rect x="129" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="143" y="147" width="10" height="7" rx="1" fill="#fff"/><rect x="157" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="171" y="147" width="10" height="7" rx="1" fill="#003399"/><rect x="185" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="199" y="147" width="10" height="7" rx="1" fill="#fff"/><rect x="213" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="227" y="147" width="10" height="7" rx="1" fill="#1a3a6e"/><rect x="241" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="255" y="147" width="10" height="7" rx="1" fill="#fff"/><rect x="269" y="147" width="10" height="7" rx="1" fill="#cc0000"/>
-        <!-- rows y=170-300 left section -->
-        <circle cx="8" cy="172" r="6" fill="#f5c9a0"/><circle cx="24" cy="170" r="6" fill="#d4956a"/><circle cx="40" cy="172" r="6" fill="#f0c090"/><circle cx="56" cy="170" r="6" fill="#c87850"/><circle cx="72" cy="172" r="6" fill="#f5d0a0"/><circle cx="88" cy="170" r="6" fill="#e0b078"/><circle cx="104" cy="172" r="6" fill="#d09060"/><circle cx="120" cy="170" r="6" fill="#f0c8a0"/><circle cx="136" cy="172" r="6" fill="#e8b470"/><circle cx="152" cy="170" r="6" fill="#f5c9a0"/><circle cx="168" cy="172" r="6" fill="#c8845a"/><circle cx="184" cy="170" r="6" fill="#d4956a"/><circle cx="200" cy="172" r="6" fill="#f0d0b0"/><circle cx="216" cy="170" r="6" fill="#e8b890"/><circle cx="232" cy="172" r="6" fill="#f5c8a0"/><circle cx="248" cy="170" r="6" fill="#c87850"/><circle cx="264" cy="172" r="6" fill="#d09060"/><circle cx="280" cy="170" r="6" fill="#f0c090"/>
-        <rect x="2" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="18" y="178" width="12" height="9" rx="1" fill="#fff"/><rect x="34" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="50" y="178" width="12" height="9" rx="1" fill="#1a3a6e"/><rect x="66" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="82" y="178" width="12" height="9" rx="1" fill="#fff"/><rect x="98" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="114" y="178" width="12" height="9" rx="1" fill="#003399"/><rect x="130" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="146" y="178" width="12" height="9" rx="1" fill="#fff"/><rect x="162" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="178" y="178" width="12" height="9" rx="1" fill="#1a3a6e"/><rect x="194" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="210" y="178" width="12" height="9" rx="1" fill="#fff"/><rect x="226" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="242" y="178" width="12" height="9" rx="1" fill="#003399"/><rect x="258" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="274" y="178" width="12" height="9" rx="1" fill="#fff"/>
-        <!-- rows y=200-300 -->
-        <circle cx="8" cy="202" r="6" fill="#d4956a"/><circle cx="24" cy="200" r="6" fill="#f5c9a0"/><circle cx="40" cy="202" r="6" fill="#c87850"/><circle cx="56" cy="200" r="6" fill="#f0d0b0"/><circle cx="72" cy="202" r="6" fill="#e8b470"/><circle cx="88" cy="200" r="6" fill="#f5c8a0"/><circle cx="104" cy="202" r="6" fill="#d09060"/><circle cx="120" cy="200" r="6" fill="#f0c090"/><circle cx="136" cy="202" r="6" fill="#f5c9a0"/><circle cx="152" cy="200" r="6" fill="#c8845a"/><circle cx="168" cy="202" r="6" fill="#d4956a"/><circle cx="184" cy="200" r="6" fill="#f0d0b0"/><circle cx="200" cy="202" r="6" fill="#e8b890"/><circle cx="216" cy="200" r="6" fill="#f5c8a0"/><circle cx="232" cy="202" r="6" fill="#c87850"/><circle cx="248" cy="200" r="6" fill="#d09060"/><circle cx="264" cy="202" r="6" fill="#f0c8a0"/><circle cx="280" cy="200" r="6" fill="#e8b470"/>
-        <rect x="2" y="208" width="12" height="9" rx="1" fill="#fff"/><rect x="18" y="208" width="12" height="9" rx="1" fill="#cc0000"/><rect x="34" y="208" width="12" height="9" rx="1" fill="#1a3a6e"/><rect x="50" y="208" width="12" height="9" rx="1" fill="#cc0000"/><rect x="66" y="208" width="12" height="9" rx="1" fill="#fff"/><rect x="82" y="208" width="12" height="9" rx="1" fill="#cc0000"/><rect x="98" y="208" width="12" height="9" rx="1" fill="#003399"/><rect x="114" y="208" width="12" height="9" rx="1" fill="#cc0000"/><rect x="130" y="208" width="12" height="9" rx="1" fill="#fff"/><rect x="146" y="208" width="12" height="9" rx="1" fill="#cc0000"/><rect x="162" y="208" width="12" height="9" rx="1" fill="#1a3a6e"/><rect x="178" y="208" width="12" height="9" rx="1" fill="#cc0000"/><rect x="194" y="208" width="12" height="9" rx="1" fill="#fff"/><rect x="210" y="208" width="12" height="9" rx="1" fill="#cc0000"/><rect x="226" y="208" width="12" height="9" rx="1" fill="#003399"/><rect x="242" y="208" width="12" height="9" rx="1" fill="#cc0000"/><rect x="258" y="208" width="12" height="9" rx="1" fill="#fff"/><rect x="274" y="208" width="12" height="9" rx="1" fill="#cc0000"/>
-        <!-- front rows y=240, 270, 300 -->
-        <circle cx="8" cy="242" r="7" fill="#f5c9a0"/><circle cx="26" cy="240" r="7" fill="#d4956a"/><circle cx="44" cy="242" r="7" fill="#f0c090"/><circle cx="62" cy="240" r="7" fill="#c87850"/><circle cx="80" cy="242" r="7" fill="#f5d0a0"/><circle cx="98" cy="240" r="7" fill="#e0b078"/><circle cx="116" cy="242" r="7" fill="#d09060"/><circle cx="134" cy="240" r="7" fill="#f0c8a0"/><circle cx="152" cy="242" r="7" fill="#e8b470"/><circle cx="170" cy="240" r="7" fill="#f5c9a0"/><circle cx="188" cy="242" r="7" fill="#c8845a"/><circle cx="206" cy="240" r="7" fill="#d4956a"/><circle cx="224" cy="242" r="7" fill="#f0d0b0"/><circle cx="242" cy="240" r="7" fill="#e8b890"/><circle cx="260" cy="242" r="7" fill="#f5c8a0"/><circle cx="278" cy="240" r="7" fill="#c87850"/>
-        <rect x="1" y="249" width="14" height="11" rx="1" fill="#cc0000"/><rect x="19" y="249" width="14" height="11" rx="1" fill="#1a3a6e"/><rect x="37" y="249" width="14" height="11" rx="1" fill="#cc0000"/><rect x="55" y="249" width="14" height="11" rx="1" fill="#fff"/><rect x="73" y="249" width="14" height="11" rx="1" fill="#cc0000"/><rect x="91" y="249" width="14" height="11" rx="1" fill="#003399"/><rect x="109" y="249" width="14" height="11" rx="1" fill="#cc0000"/><rect x="127" y="249" width="14" height="11" rx="1" fill="#fff"/><rect x="145" y="249" width="14" height="11" rx="1" fill="#cc0000"/><rect x="163" y="249" width="14" height="11" rx="1" fill="#1a3a6e"/><rect x="181" y="249" width="14" height="11" rx="1" fill="#cc0000"/><rect x="199" y="249" width="14" height="11" rx="1" fill="#fff"/><rect x="217" y="249" width="14" height="11" rx="1" fill="#cc0000"/><rect x="235" y="249" width="14" height="11" rx="1" fill="#003399"/><rect x="253" y="249" width="14" height="11" rx="1" fill="#cc0000"/><rect x="271" y="249" width="14" height="11" rx="1" fill="#fff"/>
-        <!-- DECOYS — red things left section -->
-        <!-- Decoy A: red cap row 3 -->
-        <ellipse cx="92" cy="108" rx="8" ry="3" fill="#cc0000"/>
-        <!-- Decoy B: England scarf waved -->
-        <rect x="45" y="168" width="26" height="6" rx="1" fill="#cc0000"/><rect x="45" y="168" width="26" height="2" fill="#fff" opacity=".5"/>
-        <!-- Decoy C: red Mexico shirt prominent -->
-        <circle cx="168" cy="242" r="7" fill="#f0c8a0"/>
-        <rect x="161" y="249" width="14" height="11" rx="1" fill="#006600"/>
+        <!-- Drinks table -->
+        <rect x="192" y="305" width="140" height="9" rx="2" fill="#8B6914"/>
+        <rect x="203" y="314" width="9" height="44" fill="#7a5c10"/>
+        <rect x="313" y="314" width="9" height="44" fill="#7a5c10"/>
+        <rect x="210" y="278" width="11" height="27" rx="2" fill="#cc2200"/>
+        <rect x="226" y="280" width="11" height="25" rx="2" fill="#f5c232"/>
+        <rect x="242" y="275" width="13" height="30" rx="2" fill="#1a6e1a"/>
+        <rect x="258" y="282" width="11" height="23" rx="2" fill="#0055aa"/>
+        <rect x="274" y="278" width="11" height="27" rx="2" fill="#cc2200"/>
+        <ellipse cx="215" cy="277" rx="7" ry="3" fill="#dd3300"/>
+        <ellipse cx="231" cy="279" rx="7" ry="3" fill="#f0b800"/>
+        <ellipse cx="248" cy="274" rx="8" ry="3" fill="#1a8a1a"/>
+        <ellipse cx="263" cy="281" rx="7" ry="3" fill="#0044aa"/>
+        <ellipse cx="279" cy="277" rx="7" ry="3" fill="#dd3300"/>
+        <rect x="292" y="289" width="9" height="16" rx="1" fill="white" stroke="#ddd" stroke-width="1"/>
+        <rect x="305" y="289" width="9" height="16" rx="1" fill="white" stroke="#ddd" stroke-width="1"/>
+        <rect x="318" y="289" width="9" height="16" rx="1" fill="white" stroke="#ddd" stroke-width="1"/>
 
-        <!-- ══ CENTRE SECTION CROWD ══ -->
-        <!-- row y=60 centre -->
-        <circle cx="298" cy="62" r="4" fill="#f5c9a0"/><circle cx="310" cy="60" r="4" fill="#d4956a"/><circle cx="322" cy="62" r="4" fill="#f0c090"/><circle cx="334" cy="60" r="4" fill="#c87850"/><circle cx="346" cy="62" r="4" fill="#f5d0a0"/><circle cx="358" cy="60" r="4" fill="#e8b470"/><circle cx="370" cy="62" r="4" fill="#d09060"/><circle cx="382" cy="60" r="4" fill="#f0c8a0"/><circle cx="394" cy="62" r="4" fill="#f5c9a0"/><circle cx="406" cy="60" r="4" fill="#c8845a"/><circle cx="418" cy="62" r="4" fill="#d4956a"/><circle cx="430" cy="60" r="4" fill="#f0d0b0"/><circle cx="442" cy="62" r="4" fill="#e8b890"/><circle cx="454" cy="60" r="4" fill="#f5c8a0"/><circle cx="466" cy="62" r="4" fill="#c87850"/><circle cx="478" cy="60" r="4" fill="#d09060"/><circle cx="490" cy="62" r="4" fill="#f0c090"/><circle cx="502" cy="60" r="4" fill="#e8b470"/><circle cx="514" cy="62" r="4" fill="#f5c9a0"/><circle cx="526" cy="60" r="4" fill="#d4956a"/><circle cx="538" cy="62" r="4" fill="#f0d0b0"/><circle cx="550" cy="60" r="4" fill="#c87850"/><circle cx="562" cy="62" r="4" fill="#e8b890"/><circle cx="574" cy="60" r="4" fill="#f5c8a0"/><circle cx="586" cy="62" r="4" fill="#d09060"/><circle cx="598" cy="60" r="4" fill="#f0c8a0"/>
-        <!-- shirts centre row 1 -->
-        <rect x="294" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="306" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="318" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="330" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="342" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="354" y="66" width="8" height="5" rx="1" fill="#006600"/><rect x="366" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="378" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="390" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="402" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="414" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="426" y="66" width="8" height="5" rx="1" fill="#006600"/><rect x="438" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="450" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="462" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="474" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="486" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="498" y="66" width="8" height="5" rx="1" fill="#006600"/><rect x="510" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="522" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="534" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="546" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="558" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="570" y="66" width="8" height="5" rx="1" fill="#006600"/><rect x="582" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="594" y="66" width="8" height="5" rx="1" fill="#fff"/>
-        <!-- centre more rows -->
-        <circle cx="298" cy="100" r="5" fill="#f5c9a0"/><circle cx="314" cy="98" r="5" fill="#d4956a"/><circle cx="330" cy="100" r="5" fill="#c87850"/><circle cx="346" cy="98" r="5" fill="#f0d0b0"/><circle cx="362" cy="100" r="5" fill="#e8b470"/><circle cx="378" cy="98" r="5" fill="#f5c8a0"/><circle cx="394" cy="100" r="5" fill="#d09060"/><circle cx="410" cy="98" r="5" fill="#f0c090"/><circle cx="426" cy="100" r="5" fill="#f5c9a0"/><circle cx="442" cy="98" r="5" fill="#c8845a"/><circle cx="458" cy="100" r="5" fill="#d4956a"/><circle cx="474" cy="98" r="5" fill="#f0d0b0"/><circle cx="490" cy="100" r="5" fill="#e8b890"/><circle cx="506" cy="98" r="5" fill="#f5c8a0"/><circle cx="522" cy="100" r="5" fill="#c87850"/><circle cx="538" cy="98" r="5" fill="#d09060"/><circle cx="554" cy="100" r="5" fill="#f0c8a0"/><circle cx="570" cy="98" r="5" fill="#e8b470"/><circle cx="586" cy="100" r="5" fill="#f5c9a0"/><circle cx="602" cy="98" r="5" fill="#d4956a"/>
-        <rect x="293" y="105" width="10" height="7" rx="1" fill="#003399"/><rect x="309" y="105" width="10" height="7" rx="1" fill="#cc0000"/><rect x="325" y="105" width="10" height="7" rx="1" fill="#fff"/><rect x="341" y="105" width="10" height="7" rx="1" fill="#cc0000"/><rect x="357" y="105" width="10" height="7" rx="1" fill="#006600"/><rect x="373" y="105" width="10" height="7" rx="1" fill="#cc0000"/><rect x="389" y="105" width="10" height="7" rx="1" fill="#fff"/><rect x="405" y="105" width="10" height="7" rx="1" fill="#003399"/><rect x="421" y="105" width="10" height="7" rx="1" fill="#cc0000"/><rect x="437" y="105" width="10" height="7" rx="1" fill="#fff"/><rect x="453" y="105" width="10" height="7" rx="1" fill="#006600"/><rect x="469" y="105" width="10" height="7" rx="1" fill="#cc0000"/><rect x="485" y="105" width="10" height="7" rx="1" fill="#fff"/><rect x="501" y="105" width="10" height="7" rx="1" fill="#003399"/><rect x="517" y="105" width="10" height="7" rx="1" fill="#cc0000"/><rect x="533" y="105" width="10" height="7" rx="1" fill="#fff"/><rect x="549" y="105" width="10" height="7" rx="1" fill="#006600"/><rect x="565" y="105" width="10" height="7" rx="1" fill="#cc0000"/><rect x="581" y="105" width="10" height="7" rx="1" fill="#fff"/><rect x="597" y="105" width="10" height="7" rx="1" fill="#003399"/>
-        <!-- DECOY centre: red England banner being waved -->
-        <rect x="360" y="135" width="40" height="20" rx="2" fill="#cc0000"/><text x="380" y="149" font-family="Arial" font-size="8" fill="white" text-anchor="middle" font-weight="700">ENG</text>
-        <rect x="378" y="155" width="3" height="20" fill="#888"/>
-        <!-- more centre rows y=160-300 -->
-        <circle cx="298" cy="162" r="6" fill="#e8b48a"/><circle cx="316" cy="160" r="6" fill="#f5c9a0"/><circle cx="334" cy="162" r="6" fill="#d4956a"/><circle cx="352" cy="160" r="6" fill="#f0c090"/><circle cx="370" cy="162" r="6" fill="#c87850"/><circle cx="388" cy="160" r="6" fill="#f5d0a0"/><circle cx="406" cy="162" r="6" fill="#e0b078"/><circle cx="424" cy="160" r="6" fill="#d09060"/><circle cx="442" cy="162" r="6" fill="#f0c8a0"/><circle cx="460" cy="160" r="6" fill="#e8b470"/><circle cx="478" cy="162" r="6" fill="#f5c9a0"/><circle cx="496" cy="160" r="6" fill="#c8845a"/><circle cx="514" cy="162" r="6" fill="#d4956a"/><circle cx="532" cy="160" r="6" fill="#f0d0b0"/><circle cx="550" cy="162" r="6" fill="#e8b890"/><circle cx="568" cy="160" r="6" fill="#f5c8a0"/><circle cx="586" cy="162" r="6" fill="#c87850"/><circle cx="604" cy="160" r="6" fill="#d09060"/>
-        <rect x="292" y="168" width="12" height="9" rx="1" fill="#cc0000"/><rect x="310" y="168" width="12" height="9" rx="1" fill="#003399"/><rect x="328" y="168" width="12" height="9" rx="1" fill="#cc0000"/><rect x="346" y="168" width="12" height="9" rx="1" fill="#fff"/><rect x="364" y="168" width="12" height="9" rx="1" fill="#cc0000"/><rect x="382" y="168" width="12" height="9" rx="1" fill="#006600"/><rect x="400" y="168" width="12" height="9" rx="1" fill="#cc0000"/><rect x="418" y="168" width="12" height="9" rx="1" fill="#fff"/><rect x="436" y="168" width="12" height="9" rx="1" fill="#003399"/><rect x="454" y="168" width="12" height="9" rx="1" fill="#cc0000"/><rect x="472" y="168" width="12" height="9" rx="1" fill="#fff"/><rect x="490" y="168" width="12" height="9" rx="1" fill="#006600"/><rect x="508" y="168" width="12" height="9" rx="1" fill="#cc0000"/><rect x="526" y="168" width="12" height="9" rx="1" fill="#fff"/><rect x="544" y="168" width="12" height="9" rx="1" fill="#003399"/><rect x="562" y="168" width="12" height="9" rx="1" fill="#cc0000"/><rect x="580" y="168" width="12" height="9" rx="1" fill="#fff"/><rect x="598" y="168" width="12" height="9" rx="1" fill="#006600"/>
-        <!-- front rows centre y=200-300 -->
-        <circle cx="298" cy="202" r="7" fill="#f5c9a0"/><circle cx="318" cy="200" r="7" fill="#d4956a"/><circle cx="338" cy="202" r="7" fill="#f0c090"/><circle cx="358" cy="200" r="7" fill="#c87850"/><circle cx="378" cy="202" r="7" fill="#f5d0a0"/><circle cx="398" cy="200" r="7" fill="#e0b078"/><circle cx="418" cy="202" r="7" fill="#d09060"/><circle cx="438" cy="200" r="7" fill="#f0c8a0"/><circle cx="458" cy="202" r="7" fill="#e8b470"/><circle cx="478" cy="200" r="7" fill="#f5c9a0"/><circle cx="498" cy="202" r="7" fill="#c8845a"/><circle cx="518" cy="200" r="7" fill="#d4956a"/><circle cx="538" cy="202" r="7" fill="#f0d0b0"/><circle cx="558" cy="200" r="7" fill="#e8b890"/><circle cx="578" cy="202" r="7" fill="#f5c8a0"/><circle cx="598" cy="200" r="7" fill="#c87850"/>
-        <rect x="291" y="209" width="14" height="11" rx="1" fill="#fff"/><rect x="311" y="209" width="14" height="11" rx="1" fill="#cc0000"/><rect x="331" y="209" width="14" height="11" rx="1" fill="#003399"/><rect x="351" y="209" width="14" height="11" rx="1" fill="#cc0000"/><rect x="371" y="209" width="14" height="11" rx="1" fill="#fff"/><rect x="391" y="209" width="14" height="11" rx="1" fill="#006600"/><rect x="411" y="209" width="14" height="11" rx="1" fill="#cc0000"/><rect x="431" y="209" width="14" height="11" rx="1" fill="#fff"/><rect x="451" y="209" width="14" height="11" rx="1" fill="#003399"/><rect x="471" y="209" width="14" height="11" rx="1" fill="#cc0000"/><rect x="491" y="209" width="14" height="11" rx="1" fill="#fff"/><rect x="511" y="209" width="14" height="11" rx="1" fill="#006600"/><rect x="531" y="209" width="14" height="11" rx="1" fill="#cc0000"/><rect x="551" y="209" width="14" height="11" rx="1" fill="#fff"/><rect x="571" y="209" width="14" height="11" rx="1" fill="#003399"/><rect x="591" y="209" width="14" height="11" rx="1" fill="#cc0000"/>
-        <!-- centre front y=240 & 270 -->
-        <circle cx="298" cy="244" r="8" fill="#f5c9a0"/><circle cx="320" cy="242" r="8" fill="#d4956a"/><circle cx="342" cy="244" r="8" fill="#f0c090"/><circle cx="364" cy="242" r="8" fill="#c87850"/><circle cx="386" cy="244" r="8" fill="#f5d0a0"/><circle cx="408" cy="242" r="8" fill="#e0b078"/><circle cx="430" cy="244" r="8" fill="#d09060"/><circle cx="452" cy="242" r="8" fill="#f0c8a0"/><circle cx="474" cy="244" r="8" fill="#e8b470"/><circle cx="496" cy="242" r="8" fill="#f5c9a0"/><circle cx="518" cy="244" r="8" fill="#c8845a"/><circle cx="540" cy="242" r="8" fill="#d4956a"/><circle cx="562" cy="244" r="8" fill="#f0d0b0"/><circle cx="584" cy="242" r="8" fill="#e8b890"/><circle cx="606" cy="242" r="8" fill="#f5c8a0"/>
-        <rect x="290" y="252" width="16" height="13" rx="1" fill="#cc0000"/><rect x="312" y="252" width="16" height="13" rx="1" fill="#003399"/><rect x="334" y="252" width="16" height="13" rx="1" fill="#cc0000"/><rect x="356" y="252" width="16" height="13" rx="1" fill="#fff"/><rect x="378" y="252" width="16" height="13" rx="1" fill="#006600"/><rect x="400" y="252" width="16" height="13" rx="1" fill="#cc0000"/><rect x="422" y="252" width="16" height="13" rx="1" fill="#fff"/><rect x="444" y="252" width="16" height="13" rx="1" fill="#003399"/><rect x="466" y="252" width="16" height="13" rx="1" fill="#cc0000"/><rect x="488" y="252" width="16" height="13" rx="1" fill="#fff"/><rect x="510" y="252" width="16" height="13" rx="1" fill="#006600"/><rect x="532" y="252" width="16" height="13" rx="1" fill="#cc0000"/><rect x="554" y="252" width="16" height="13" rx="1" fill="#fff"/><rect x="576" y="252" width="16" height="13" rx="1" fill="#003399"/><rect x="598" y="252" width="16" height="13" rx="1" fill="#cc0000"/>
-        <!-- DECOY: red cap centre, red phone light -->
-        <ellipse cx="430" cy="238" rx="10" ry="3.5" fill="#cc0000"/>
-        <!-- Decoy: red flag centre -->
-        <rect x="500" y="190" width="24" height="14" rx="1" fill="#cc0000"/>
-        <rect x="511" y="190" width="2" height="24" fill="#888"/>
+        <!-- BIG RED/WHITE PARASOL — major decoy -->
+        <line x1="505" y1="140" x2="505" y2="365" stroke="#8B6914" stroke-width="5"/>
+        <path d="M410 225 Q505 155 600 225 Z" fill="#cc0000"/>
+        <path d="M410 225 Q457 180 505 165" fill="none" stroke="white" stroke-width="10" opacity=".6"/>
+        <path d="M505 165 Q553 180 600 225" fill="none" stroke="white" stroke-width="10" opacity=".6"/>
+        <path d="M410 225 Q434 202 456 207" fill="none" stroke="#cc0000" stroke-width="7"/>
+        <path d="M554 207 Q576 202 600 225" fill="none" stroke="#cc0000" stroke-width="7"/>
+        <!-- table under parasol -->
+        <ellipse cx="505" cy="342" rx="55" ry="14" fill="#8B6914" opacity=".8"/>
+        <!-- sitting figures under parasol -->
+        <circle cx="462" cy="302" r="14" fill="#e8b48a"/>
+        <rect x="448" y="316" width="28" height="22" rx="2" fill="#A100FF"/>
+        <circle cx="548" cy="305" r="13" fill="#f5c9a0"/>
+        <rect x="535" y="318" width="26" height="21" rx="2" fill="#6600cc"/>
+        <rect x="495" y="328" width="8" height="18" rx="2" fill="#cc2200"/>
+        <rect x="509" y="330" width="8" height="16" rx="2" fill="#f5c232"/>
 
-        <!-- ══ RIGHT SECTION CROWD ══ -->
-        <circle cx="630" cy="62" r="4" fill="#f5c9a0"/><circle cx="642" cy="60" r="4" fill="#d4956a"/><circle cx="654" cy="62" r="4" fill="#f0c090"/><circle cx="666" cy="60" r="4" fill="#c87850"/><circle cx="678" cy="62" r="4" fill="#f5d0a0"/><circle cx="690" cy="60" r="4" fill="#e8b470"/><circle cx="702" cy="62" r="4" fill="#d09060"/><circle cx="714" cy="60" r="4" fill="#f0c8a0"/><circle cx="726" cy="62" r="4" fill="#f5c9a0"/><circle cx="738" cy="60" r="4" fill="#c8845a"/><circle cx="750" cy="62" r="4" fill="#d4956a"/><circle cx="762" cy="60" r="4" fill="#f0d0b0"/><circle cx="774" cy="62" r="4" fill="#e8b890"/><circle cx="786" cy="60" r="4" fill="#f5c8a0"/><circle cx="798" cy="62" r="4" fill="#c87850"/><circle cx="810" cy="60" r="4" fill="#d09060"/><circle cx="822" cy="62" r="4" fill="#f0c090"/><circle cx="834" cy="60" r="4" fill="#e8b470"/><circle cx="846" cy="62" r="4" fill="#f5c9a0"/><circle cx="858" cy="60" r="4" fill="#d4956a"/><circle cx="870" cy="62" r="4" fill="#f0d0b0"/><circle cx="882" cy="60" r="4" fill="#c87850"/><circle cx="894" cy="62" r="4" fill="#e8b890"/>
-        <rect x="626" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="638" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="650" y="66" width="8" height="5" rx="1" fill="#006600"/><rect x="662" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="674" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="686" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="698" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="710" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="722" y="66" width="8" height="5" rx="1" fill="#006600"/><rect x="734" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="746" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="758" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="770" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="782" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="794" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="806" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="818" y="66" width="8" height="5" rx="1" fill="#006600"/><rect x="830" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="842" y="66" width="8" height="5" rx="1" fill="#fff"/><rect x="854" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="866" y="66" width="8" height="5" rx="1" fill="#003399"/><rect x="878" y="66" width="8" height="5" rx="1" fill="#cc0000"/><rect x="890" y="66" width="8" height="5" rx="1" fill="#fff"/>
-        <!-- right more rows y=100-300 -->
-        <circle cx="630" cy="102" r="5" fill="#e8b48a"/><circle cx="646" cy="100" r="5" fill="#f5c9a0"/><circle cx="662" cy="102" r="5" fill="#d4956a"/><circle cx="678" cy="100" r="5" fill="#f0c090"/><circle cx="694" cy="102" r="5" fill="#c87850"/><circle cx="710" cy="100" r="5" fill="#f5d0a0"/><circle cx="726" cy="102" r="5" fill="#e0b078"/><circle cx="742" cy="100" r="5" fill="#d09060"/><circle cx="758" cy="102" r="5" fill="#f0c8a0"/><circle cx="774" cy="100" r="5" fill="#e8b470"/><circle cx="790" cy="102" r="5" fill="#f5c9a0"/><circle cx="806" cy="100" r="5" fill="#c8845a"/><circle cx="822" cy="102" r="5" fill="#d4956a"/><circle cx="838" cy="100" r="5" fill="#f0d0b0"/><circle cx="854" cy="102" r="5" fill="#e8b890"/><circle cx="870" cy="100" r="5" fill="#f5c8a0"/><circle cx="886" cy="102" r="5" fill="#c87850"/>
-        <rect x="625" y="107" width="10" height="7" rx="1" fill="#cc0000"/><rect x="641" y="107" width="10" height="7" rx="1" fill="#003399"/><rect x="657" y="107" width="10" height="7" rx="1" fill="#cc0000"/><rect x="673" y="107" width="10" height="7" rx="1" fill="#fff"/><rect x="689" y="107" width="10" height="7" rx="1" fill="#006600"/><rect x="705" y="107" width="10" height="7" rx="1" fill="#cc0000"/><rect x="721" y="107" width="10" height="7" rx="1" fill="#fff"/><rect x="737" y="107" width="10" height="7" rx="1" fill="#003399"/><rect x="753" y="107" width="10" height="7" rx="1" fill="#cc0000"/><rect x="769" y="107" width="10" height="7" rx="1" fill="#fff"/><rect x="785" y="107" width="10" height="7" rx="1" fill="#006600"/><rect x="801" y="107" width="10" height="7" rx="1" fill="#cc0000"/><rect x="817" y="107" width="10" height="7" rx="1" fill="#fff"/><rect x="833" y="107" width="10" height="7" rx="1" fill="#003399"/><rect x="849" y="107" width="10" height="7" rx="1" fill="#cc0000"/><rect x="865" y="107" width="10" height="7" rx="1" fill="#fff"/><rect x="881" y="107" width="10" height="7" rx="1" fill="#006600"/>
-        <!-- right rows y=140 -->
-        <circle cx="630" cy="142" r="5" fill="#f5c9a0"/><circle cx="646" cy="140" r="5" fill="#c87850"/><circle cx="662" cy="142" r="5" fill="#d4956a"/><circle cx="678" cy="140" r="5" fill="#f0d0b0"/><circle cx="694" cy="142" r="5" fill="#e8b470"/><circle cx="710" cy="140" r="5" fill="#f5c8a0"/><circle cx="726" cy="142" r="5" fill="#d09060"/><circle cx="742" cy="140" r="5" fill="#f0c090"/><circle cx="758" cy="142" r="5" fill="#f5c9a0"/><circle cx="774" cy="140" r="5" fill="#c8845a"/><circle cx="790" cy="142" r="5" fill="#d4956a"/><circle cx="806" cy="140" r="5" fill="#f0d0b0"/><circle cx="822" cy="142" r="5" fill="#e8b890"/><circle cx="838" cy="140" r="5" fill="#f5c8a0"/><circle cx="854" cy="142" r="5" fill="#c87850"/><circle cx="870" cy="140" r="5" fill="#d09060"/><circle cx="886" cy="142" r="5" fill="#f0c8a0"/>
-        <rect x="625" y="147" width="10" height="7" rx="1" fill="#fff"/><rect x="641" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="657" y="147" width="10" height="7" rx="1" fill="#003399"/><rect x="673" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="689" y="147" width="10" height="7" rx="1" fill="#fff"/><rect x="705" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="721" y="147" width="10" height="7" rx="1" fill="#006600"/><rect x="737" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="753" y="147" width="10" height="7" rx="1" fill="#fff"/><rect x="769" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="785" y="147" width="10" height="7" rx="1" fill="#003399"/><rect x="801" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="817" y="147" width="10" height="7" rx="1" fill="#fff"/><rect x="833" y="147" width="10" height="7" rx="1" fill="#006600"/><rect x="849" y="147" width="10" height="7" rx="1" fill="#cc0000"/><rect x="865" y="147" width="10" height="7" rx="1" fill="#fff"/><rect x="881" y="147" width="10" height="7" rx="1" fill="#cc0000"/>
-        <!-- right big rows y=170-300 -->
-        <circle cx="630" cy="172" r="6" fill="#d4956a"/><circle cx="648" cy="170" r="6" fill="#f5c9a0"/><circle cx="666" cy="172" r="6" fill="#c87850"/><circle cx="684" cy="170" r="6" fill="#f0d0b0"/><circle cx="702" cy="172" r="6" fill="#e8b470"/><circle cx="720" cy="170" r="6" fill="#f5c8a0"/><circle cx="738" cy="172" r="6" fill="#d09060"/><circle cx="756" cy="170" r="6" fill="#f0c090"/><circle cx="774" cy="172" r="6" fill="#f5c9a0"/><circle cx="792" cy="170" r="6" fill="#c8845a"/><circle cx="810" cy="172" r="6" fill="#d4956a"/><circle cx="828" cy="170" r="6" fill="#f0d0b0"/><circle cx="846" cy="172" r="6" fill="#e8b890"/><circle cx="864" cy="170" r="6" fill="#f5c8a0"/><circle cx="882" cy="172" r="6" fill="#c87850"/>
-        <rect x="624" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="642" y="178" width="12" height="9" rx="1" fill="#fff"/><rect x="660" y="178" width="12" height="9" rx="1" fill="#006600"/><rect x="678" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="696" y="178" width="12" height="9" rx="1" fill="#003399"/><rect x="714" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="732" y="178" width="12" height="9" rx="1" fill="#fff"/><rect x="750" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="768" y="178" width="12" height="9" rx="1" fill="#006600"/><rect x="786" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="804" y="178" width="12" height="9" rx="1" fill="#fff"/><rect x="822" y="178" width="12" height="9" rx="1" fill="#003399"/><rect x="840" y="178" width="12" height="9" rx="1" fill="#cc0000"/><rect x="858" y="178" width="12" height="9" rx="1" fill="#fff"/><rect x="876" y="178" width="12" height="9" rx="1" fill="#006600"/>
-        <!-- right y=200 -->
-        <circle cx="630" cy="202" r="7" fill="#f5c9a0"/><circle cx="650" cy="200" r="7" fill="#d4956a"/><circle cx="670" cy="202" r="7" fill="#f0c090"/><circle cx="690" cy="200" r="7" fill="#c87850"/><circle cx="710" cy="202" r="7" fill="#f5d0a0"/><circle cx="730" cy="200" r="7" fill="#e0b078"/><circle cx="750" cy="202" r="7" fill="#d09060"/><circle cx="770" cy="200" r="7" fill="#f0c8a0"/><circle cx="790" cy="202" r="7" fill="#e8b470"/><circle cx="810" cy="200" r="7" fill="#f5c9a0"/><circle cx="830" cy="202" r="7" fill="#c8845a"/><circle cx="850" cy="200" r="7" fill="#d4956a"/><circle cx="870" cy="202" r="7" fill="#f0d0b0"/><circle cx="890" cy="200" r="7" fill="#e8b890"/>
-        <rect x="623" y="209" width="14" height="11" rx="1" fill="#fff"/><rect x="643" y="209" width="14" height="11" rx="1" fill="#cc0000"/><rect x="663" y="209" width="14" height="11" rx="1" fill="#003399"/><rect x="683" y="209" width="14" height="11" rx="1" fill="#cc0000"/><rect x="703" y="209" width="14" height="11" rx="1" fill="#fff"/><rect x="723" y="209" width="14" height="11" rx="1" fill="#006600"/><rect x="743" y="209" width="14" height="11" rx="1" fill="#cc0000"/><rect x="763" y="209" width="14" height="11" rx="1" fill="#fff"/><rect x="783" y="209" width="14" height="11" rx="1" fill="#003399"/><rect x="803" y="209" width="14" height="11" rx="1" fill="#cc0000"/><rect x="823" y="209" width="14" height="11" rx="1" fill="#fff"/><rect x="843" y="209" width="14" height="11" rx="1" fill="#006600"/><rect x="863" y="209" width="14" height="11" rx="1" fill="#cc0000"/><rect x="883" y="209" width="14" height="11" rx="1" fill="#fff"/>
-        <!-- right y=240 -->
-        <circle cx="630" cy="244" r="8" fill="#d4956a"/><circle cx="652" cy="242" r="8" fill="#f5c9a0"/><circle cx="674" cy="244" r="8" fill="#c87850"/><circle cx="696" cy="242" r="8" fill="#f0d0b0"/><circle cx="718" cy="244" r="8" fill="#e8b470"/><circle cx="740" cy="242" r="8" fill="#f5c8a0"/><circle cx="762" cy="244" r="8" fill="#d09060"/><circle cx="784" cy="242" r="8" fill="#f0c090"/><circle cx="806" cy="244" r="8" fill="#f5c9a0"/><circle cx="828" cy="242" r="8" fill="#c8845a"/><circle cx="850" cy="244" r="8" fill="#d4956a"/><circle cx="872" cy="242" r="8" fill="#f0d0b0"/><circle cx="894" cy="244" r="8" fill="#e8b890"/>
-        <rect x="622" y="252" width="16" height="13" rx="1" fill="#cc0000"/><rect x="644" y="252" width="16" height="13" rx="1" fill="#003399"/><rect x="666" y="252" width="16" height="13" rx="1" fill="#cc0000"/><rect x="688" y="252" width="16" height="13" rx="1" fill="#fff"/><rect x="710" y="252" width="16" height="13" rx="1" fill="#006600"/><rect x="732" y="252" width="16" height="13" rx="1" fill="#cc0000"/><rect x="754" y="252" width="16" height="13" rx="1" fill="#fff"/><rect x="776" y="252" width="16" height="13" rx="1" fill="#003399"/><rect x="798" y="252" width="16" height="13" rx="1" fill="#cc0000"/><rect x="820" y="252" width="16" height="13" rx="1" fill="#fff"/><rect x="842" y="252" width="16" height="13" rx="1" fill="#006600"/><rect x="864" y="252" width="16" height="13" rx="1" fill="#cc0000"/><rect x="886" y="252" width="16" height="13" rx="1" fill="#fff"/>
-        <!-- DECOY right: red umbrella -->
-        <ellipse cx="760" cy="135" rx="15" ry="5" fill="#cc0000" opacity=".9"/>
-        <rect x="759" y="135" width="2" height="18" fill="#888"/>
-        <!-- DECOY: big red fan shirt right section -->
-        <circle cx="850" cy="244" r="8" fill="#f0c090"/>
-        <rect x="842" y="252" width="16" height="13" rx="1" fill="#ee1111"/>
+        <!-- Deckchair 1 -->
+        <rect x="340" y="380" width="70" height="32" rx="3" fill="#1a6ecc" opacity=".85"/>
+        <rect x="328" y="374" width="9" height="50" rx="2" fill="#7a5c10"/>
+        <rect x="408" y="374" width="9" height="50" rx="2" fill="#7a5c10"/>
+        <circle cx="374" cy="364" r="14" fill="#d4956a"/>
+        <rect x="376" y="362" width="7" height="4" rx="2" fill="#111"/>
+        <rect x="385" y="362" width="7" height="4" rx="2" fill="#111"/>
+        <line x1="383" y1="364" x2="385" y2="364" stroke="#111" stroke-width="1"/>
 
-        <!-- ══ WALLY — hidden row 3 right section, partially behind taller neighbour ══ -->
-        <!-- Wally squeezed between cx=762 (row y=244) and cx=784, clipped/small -->
+        <!-- Deckchair 2 -->
+        <rect x="630" y="378" width="70" height="32" rx="3" fill="#cc8800" opacity=".85"/>
+        <rect x="618" y="372" width="9" height="50" rx="2" fill="#7a5c10"/>
+        <rect x="698" y="372" width="9" height="50" rx="2" fill="#7a5c10"/>
+        <circle cx="664" cy="362" r="14" fill="#f0d0b0"/>
+        <rect x="654" y="375" width="36" height="26" rx="2" fill="#1a1a1a"/>
+        <rect x="656" y="377" width="32" height="19" rx="1" fill="#0d2244"/>
+
+        <!-- Back row tiny people -->
+        <circle cx="30" cy="162" r="9" fill="#f5c9a0"/><rect x="22" y="171" width="16" height="12" rx="1" fill="#A100FF"/>
+        <circle cx="58" cy="160" r="9" fill="#d4956a"/><rect x="50" y="169" width="16" height="12" rx="1" fill="#6600cc"/>
+        <circle cx="86" cy="162" r="9" fill="#f0c8a0"/><rect x="78" y="171" width="16" height="12" rx="1" fill="#cc0000"/>
+        <circle cx="114" cy="160" r="9" fill="#e8b48a"/><rect x="106" y="169" width="16" height="12" rx="1" fill="#7700dd"/>
+        <circle cx="142" cy="162" r="9" fill="#f5d0a0"/><rect x="134" y="171" width="16" height="12" rx="1" fill="#003399"/>
+        <circle cx="290" cy="160" r="9" fill="#c87850"/><rect x="282" y="169" width="16" height="12" rx="1" fill="#A100FF"/>
+        <circle cx="318" cy="162" r="9" fill="#f0d0b0"/><rect x="310" y="171" width="16" height="12" rx="1" fill="#cc0000"/>
+        <circle cx="348" cy="160" r="9" fill="#e8b070"/><rect x="340" y="169" width="16" height="12" rx="1" fill="#003399"/>
+        <circle cx="560" cy="160" r="9" fill="#e0b078"/><rect x="552" y="169" width="16" height="12" rx="1" fill="#7700dd"/>
+        <circle cx="588" cy="162" r="9" fill="#f5c9a0"/><rect x="580" y="171" width="16" height="12" rx="1" fill="#A100FF"/>
+        <circle cx="616" cy="160" r="9" fill="#d4956a"/><rect x="608" y="169" width="16" height="12" rx="1" fill="#cc0000"/>
+        <circle cx="760" cy="162" r="9" fill="#f0c090"/><rect x="752" y="171" width="16" height="12" rx="1" fill="#A100FF"/>
+        <circle cx="788" cy="160" r="9" fill="#e8b890"/><rect x="780" y="169" width="16" height="12" rx="1" fill="#6600cc"/>
+        <circle cx="816" cy="162" r="9" fill="#f5c9a0"/><rect x="808" y="171" width="16" height="12" rx="1" fill="#cc0000"/>
+        <circle cx="940" cy="162" r="9" fill="#d09060"/><rect x="932" y="171" width="16" height="12" rx="1" fill="#003399"/>
+        <circle cx="968" cy="160" r="9" fill="#f5d0a0"/><rect x="960" y="169" width="16" height="12" rx="1" fill="#7700dd"/>
+
+        <!-- Left people group -->
+        <circle cx="155" cy="210" r="16" fill="#f5c9a0"/>
+        <rect x="139" y="226" width="32" height="28" rx="2" fill="#A100FF"/>
+        <rect x="140" y="254" width="13" height="30" fill="#1a1a3a"/>
+        <rect x="155" y="254" width="13" height="30" fill="#1a1a3a"/>
+        <polygon points="152,231 155,226 158,231" fill="white" opacity=".7"/>
+        <!-- red shirt person — DECOY -->
+        <circle cx="208" cy="206" r="15" fill="#e8b070"/>
+        <rect x="193" y="221" width="30" height="26" rx="2" fill="#cc0000"/>
+        <rect x="194" y="247" width="12" height="28" fill="#8B0000"/>
+        <rect x="208" y="247" width="12" height="28" fill="#8B0000"/>
+        <circle cx="258" cy="212" r="15" fill="#d4956a"/>
+        <rect x="243" y="227" width="30" height="26" rx="2" fill="#7700dd"/>
+        <rect x="244" y="253" width="12" height="28" fill="#2a1a4a"/>
+        <rect x="258" y="253" width="12" height="28" fill="#2a1a4a"/>
+
+        <!-- Right people group -->
+        <circle cx="748" cy="205" r="16" fill="#f5c9a0"/>
+        <rect x="732" y="221" width="32" height="28" rx="2" fill="#A100FF"/>
+        <rect x="733" y="249" width="13" height="30" fill="#1a1a3a"/>
+        <rect x="748" y="249" width="13" height="30" fill="#1a1a3a"/>
+        <!-- red cap person — DECOY -->
+        <ellipse cx="798" cy="194" rx="18" ry="6" fill="#cc0000"/>
+        <circle cx="798" cy="205" r="15" fill="#f0d0b0"/>
+        <rect x="783" y="220" width="30" height="26" rx="2" fill="#003399"/>
+        <rect x="784" y="246" width="12" height="28" fill="#002288"/>
+        <rect x="798" y="246" width="12" height="28" fill="#002288"/>
+        <circle cx="852" cy="208" r="16" fill="#c87850"/>
+        <rect x="836" y="224" width="32" height="28" rx="2" fill="#6600cc"/>
+        <rect x="837" y="252" width="13" height="30" fill="#2a1a4a"/>
+        <rect x="852" y="252" width="13" height="30" fill="#2a1a4a"/>
+        <!-- laptop person -->
+        <circle cx="918" cy="255" r="13" fill="#f5c9a0"/>
+        <rect x="905" y="268" width="26" height="20" rx="2" fill="#5500aa"/>
+        <rect x="898" y="280" width="38" height="26" rx="2" fill="#1a1a1a"/>
+        <rect x="900" y="282" width="34" height="20" rx="1" fill="#0d2244"/>
+        <text x="917" y="294" font-family="monospace" font-size="5" fill="#00aaff" text-anchor="middle">claude.ai</text>
+
+        <!-- Extra decoys -->
+        <circle cx="176" cy="158" r="14" fill="#cc0000"/><line x1="176" y1="172" x2="173" y2="208" stroke="#888" stroke-width="1.5"/>
+        <rect x="323" y="294" width="9" height="20" rx="3" fill="#cc0000"/>
+        <rect x="324" y="292" width="7" height="5" rx="1" fill="#aa1a00"/>
+        <rect x="428" y="380" width="22" height="30" rx="2" fill="#A100FF"/>
+        <path d="M431 380 Q439 368 447 380" fill="none" stroke="#8800cc" stroke-width="2"/>
+        <text x="439" y="397" font-family="Arial" font-size="5" fill="white" text-anchor="middle">ACC</text>
+
+        <!-- Accenture banners -->
+        <rect x="14" y="142" width="26" height="86" rx="2" fill="#14003a" stroke="#A100FF" stroke-width="1.5"/>
+        <text x="27" y="164" font-family="Arial" font-size="6" fill="#A100FF" text-anchor="middle" font-weight="700">ACC</text>
+        <text x="27" y="176" font-family="Arial" font-size="6" fill="#A100FF" text-anchor="middle">ENT</text>
+        <text x="27" y="188" font-family="Arial" font-size="6" fill="#A100FF" text-anchor="middle">URE</text>
+        <polygon points="23,198 27,206 31,198" fill="#A100FF"/>
+        <rect x="25" y="228" width="4" height="28" fill="#555"/>
+        <rect x="960" y="142" width="26" height="86" rx="2" fill="#14003a" stroke="#A100FF" stroke-width="1.5"/>
+        <text x="973" y="164" font-family="Arial" font-size="6" fill="#A100FF" text-anchor="middle" font-weight="700">S&amp;C</text>
+        <text x="973" y="176" font-family="Arial" font-size="6" fill="#A100FF" text-anchor="middle">BFSG</text>
+        <polygon points="969,196 973,204 977,196" fill="#A100FF"/>
+        <rect x="971" y="226" width="4" height="28" fill="#555"/>
+
+        <!-- WALLY — tiny, clipped, behind red-cap person, right section -->
         <g id="wallyGroup" style="cursor:pointer" onclick="onWallyClick(event)">
-          <clipPath id="wc2"><rect x="768" y="218" width="24" height="36"/></clipPath>
-          <g clip-path="url(#wc2)">
-            <ellipse cx="780" cy="236" rx="9" ry="11" fill="#aa0000"/>
-            <rect x="771" y="229" width="18" height="2.5" fill="white" opacity=".8"/>
-            <rect x="771" y="234" width="18" height="2.5" fill="white" opacity=".8"/>
-            <rect x="771" y="239" width="18" height="2.5" fill="white" opacity=".8"/>
-            <circle cx="780" cy="223" r="7" fill="#f5c9a0"/>
-            <rect x="773" y="216" width="14" height="3.5" rx="1" fill="#6b3410"/>
-            <circle cx="777" cy="223" r="2.5" fill="none" stroke="#444" stroke-width=".8"/>
-            <circle cx="783" cy="223" r="2.5" fill="none" stroke="#444" stroke-width=".8"/>
-            <line x1="779.5" y1="223" x2="780.5" y2="223" stroke="#444" stroke-width=".7"/>
-            <path d="M774 217 Q780 209 786 217 Z" fill="#aa0000"/>
-            <path d="M774.5 217 Q780 211 785.5 217" fill="none" stroke="white" stroke-width="1.2"/>
-            <circle cx="780" cy="208" r="2" fill="white"/>
-            <rect x="775" y="247" width="4" height="8" fill="#111166"/>
-            <rect x="781" y="247" width="4" height="8" fill="#111166"/>
+          <clipPath id="wClip"><rect x="820" y="196" width="20" height="42"/></clipPath>
+          <g clip-path="url(#wClip)">
+            <ellipse cx="830" cy="225" rx="8" ry="10" fill="#9a0000"/>
+            <rect x="822" y="218" width="16" height="2" fill="white" opacity=".85"/>
+            <rect x="822" y="222" width="16" height="2" fill="white" opacity=".85"/>
+            <rect x="822" y="226" width="16" height="2" fill="white" opacity=".85"/>
+            <rect x="822" y="230" width="16" height="2" fill="white" opacity=".85"/>
+            <circle cx="830" cy="207" r="7" fill="#f5c9a0"/>
+            <rect x="823" y="200" width="14" height="3" rx="1" fill="#6b3410"/>
+            <circle cx="827" cy="207" r="2" fill="none" stroke="#333" stroke-width=".7"/>
+            <circle cx="833" cy="207" r="2" fill="none" stroke="#333" stroke-width=".7"/>
+            <line x1="829" y1="207" x2="831" y2="207" stroke="#333" stroke-width=".6"/>
+            <path d="M824 201 Q830 193 836 201 Z" fill="#9a0000"/>
+            <path d="M824.5 201 Q830 195 835.5 201" fill="none" stroke="white" stroke-width="1"/>
+            <circle cx="830" cy="192" r="1.8" fill="white"/>
+            <rect x="825" y="235" width="4" height="8" fill="#111166"/>
+            <rect x="831" y="235" width="4" height="8" fill="#111166"/>
           </g>
         </g>
       </svg>
     </div>
-    <div class="wally-badge" id="wallyBadge">🎉 Got him! +1 bonus point ⚽</div>
+    <div class="wally-badge" id="wallyBadge">🎉 Found him at the BBQ! Bonus point ☀️</div>
   </div>
 
-  <!-- ═══ Q8 — banking ═══ -->
-  <div class="card" id="s9">
-    <div class="card-meta"><span class="card-num">08 / 10</span><span class="card-cat cat-banking">🏦 Banking Flash</span></div>
-    <p class="card-q"><span class="emoji">₿</span>On 30 June — the last day of the month — the FCA dropped a landmark set of rules. What were they for?</p>
-    <div class="answers">
-      <div class="ans" onclick="pick(1,0)"><span class="letter">A</span>New mortgage affordability rules</div>
-      <div class="ans" onclick="pick(1,1)"><span class="letter">B</span>The UK's first comprehensive crypto regulatory framework</div>
-      <div class="ans" onclick="pick(1,2)"><span class="letter">C</span>Expanded Consumer Duty to cover wholesale markets</div>
-      <div class="ans" onclick="pick(1,3)"><span class="letter">D</span>New rules on bank branch closures</div>
+  <!-- ══ Q5 — AI cyber threat (tap card) ══ -->
+  <div class="card" id="s5">
+    <div class="card-meta"><span class="card-num">05 / 07</span><span class="card-cat cat-banking">🔐 Cyber</span></div>
+    <p class="card-q"><span class="big">🔐</span>UK Finance and regulators flagged a new accelerant for cyber risk in financial services in July. Tap what it is.</p>
+    <div class="tap-grid">
+      <div class="tap-card" onclick="pickThreat(0)" id="th0"><div class="tap-avatar">🤖</div><div class="tap-label">Frontier AI</div></div>
+      <div class="tap-card" onclick="pickThreat(1)" id="th1"><div class="tap-avatar">💻</div><div class="tap-label">Ransomware</div></div>
+      <div class="tap-card" onclick="pickThreat(2)" id="th2"><div class="tap-avatar">🌐</div><div class="tap-label">Quantum</div></div>
+      <div class="tap-card" onclick="pickThreat(3)" id="th3"><div class="tap-avatar">📱</div><div class="tap-label">Deepfakes</div></div>
     </div>
-    <div class="explainer" id="expq8"><strong>Crypto rules! 💎</strong> — The FCA published its landmark crypto framework on 30 June 2026, bringing trading platforms, custodians and stablecoin issuers fully into regulation for the first time. Full regime kicks in October 2027. The UK is officially in the crypto regulation game — only 10 years after everyone else started talking about it.</div>
+    <div class="explainer" id="exp5"><strong>Frontier AI 🤖</strong> — The FCA and BoE flagged that frontier AI is changing the pace and scale of cyber attacks in financial services — faster, more automated, and harder to detect. The FPC endorsed a joint BoE/FCA/Treasury statement on frontier AI risks, urging firms to act now. The arms race between attackers and defenders just got a software upgrade.</div>
   </div>
 
-  <!-- ═══ Q9 — banking 2 ═══ -->
-  <div class="card" id="s10">
-    <div class="card-meta"><span class="card-num">09 / 10</span><span class="card-cat cat-banking">🏦 Banking Flash</span></div>
-    <p class="card-q"><span class="emoji">🚗</span>The motor finance saga had another twist in July — the FCA actually partially suspended the redress scheme. Why?</p>
-    <div class="answers">
-      <div class="ans" onclick="pick(2,0)"><span class="letter">A</span>The Supreme Court ruled the FCA had overstepped its powers</div>
-      <div class="ans" onclick="pick(2,1)"><span class="letter">B</span>A judicial review challenge caused the FCA to pause while legal questions were resolved</div>
-      <div class="ans" onclick="pick(2,2)"><span class="letter">C</span>Lenders agreed to settle directly so the scheme was no longer needed</div>
-      <div class="ans" onclick="pick(2,3)"><span class="letter">D</span>The FCA ran out of budget to fund the redress exercise</div>
-    </div>
-    <div class="explainer" id="expq9"><strong>Judicial review ⚖️</strong> — On 2 July, the FCA partially suspended the motor finance redress scheme after a judicial review challenge. Legal uncertainty meant the FCA had to pause while the courts consider key questions about the scheme's design. Lenders breathed a small sigh of relief — for now.</div>
-  </div>
-
-  <!-- ═══ Q10 ═══ -->
-  <div class="card" id="s11">
-    <div class="card-meta"><span class="card-num">10 / 10</span><span class="card-cat cat-football">🌎 Final Question</span></div>
-    <p class="card-q"><span class="emoji">🌎</span>Last one — tap the odd one out. Which of these is NOT a 2026 World Cup host nation?</p>
-    <div class="player-grid" id="hostGrid">
-      <div class="player-card" onclick="pickHost(0)" id="hg0">
-        <div class="player-avatar">🇺🇸</div>
-        <div class="player-name">USA</div>
+  <!-- ══ Q6 — Visual tap final ══ -->
+  <div class="card" id="s6">
+    <div class="card-meta"><span class="card-num">06 / 07</span><span class="card-cat cat-visual">🏦 Final Round</span></div>
+    <p class="card-q"><span class="big">🏆</span>To finish — tap the UK bank that reported the highest H1 2026 pre-tax profit.</p>
+    <div class="tap-grid" id="bankGrid">
+      <div class="tap-card" onclick="pickBank(0)" id="bk0">
+        <div class="tap-avatar">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+        <div class="tap-label">NatWest</div>
       </div>
-      <div class="player-card" onclick="pickHost(1)" id="hg1">
-        <div class="player-avatar">🇨🇦</div>
-        <div class="player-name">Canada</div>
+      <div class="tap-card" onclick="pickBank(1)" id="bk1">
+        <div class="tap-avatar">🦅</div>
+        <div class="tap-label">Barclays</div>
       </div>
-      <div class="player-card" onclick="pickHost(2)" id="hg2">
-        <div class="player-avatar">🇧🇷</div>
-        <div class="player-name">Brazil</div>
+      <div class="tap-card" onclick="pickBank(2)" id="bk2">
+        <div class="tap-avatar">🐴</div>
+        <div class="tap-label">Lloyds</div>
       </div>
-      <div class="player-card" onclick="pickHost(3)" id="hg3">
-        <div class="player-avatar">🇲🇽</div>
-        <div class="player-name">Mexico</div>
+      <div class="tap-card" onclick="pickBank(3)" id="bk3">
+        <div class="tap-avatar">🌐</div>
+        <div class="tap-label">HSBC</div>
       </div>
     </div>
-    <div class="explainer" id="expq10"><strong>Brazil 🇧🇷 — not a host!</strong> — The three co-hosts are USA, Canada and Mexico. Brazil was reportedly considered but lost out. Maybe it's for the best they're just a guest this time.</div>
+    <div class="explainer" id="exp6"><strong>HSBC 🌐</strong> — Not even close. HSBC reported H1 2026 pre-tax profit of $18.3bn (roughly £14.5bn), dwarfing the UK domestic banks. Barclays came in at £5.9bn, Lloyds ~£4.1bn, NatWest ~£3.8bn. HSBC's global footprint and Asia exposure means it's playing a different game entirely — higher rates in Hong Kong and Singapore did the heavy lifting.</div>
   </div>
 
-  <!-- ═══ RESULTS ═══ -->
+  <!-- ══ RESULTS ══ -->
   <div class="results" id="resultsCard">
-    <div style="font-size:56px;margin-bottom:8px" id="resultEmoji">⚽</div>
-    <div class="big-score" id="bigScore">0<span class="big-denom">/10</span></div>
-    <div class="result-headline" id="resultHeadline">Not bad!</div>
-    <p class="result-sub" id="resultSub"></p>
-    <div class="result-stats">
-      <div class="rstat"><div class="rstat-num" id="rCorrect">0</div><div class="rstat-label">Correct</div></div>
-      <div class="rstat"><div class="rstat-num" id="rBonus" style="color:var(--gold)">0</div><div class="rstat-label">Bonus</div></div>
-      <div class="rstat"><div class="rstat-num" id="rAccuracy">0%</div><div class="rstat-label">Accuracy</div></div>
+    <div class="res-emoji" id="resEmoji">☀️</div>
+    <div class="res-score" id="resScore">0<span class="res-denom">/6</span></div>
+    <div class="res-headline" id="resHeadline">Not bad!</div>
+    <p class="res-sub" id="resSub"></p>
+    <div class="res-stats">
+      <div class="rstat"><div class="rstat-n" id="rCorrect">0</div><div class="rstat-l">Correct</div></div>
+      <div class="rstat"><div class="rstat-n" id="rBonus" style="color:var(--gold)">0</div><div class="rstat-l">Bonus</div></div>
+      <div class="rstat"><div class="rstat-n" id="rAccuracy">0%</div><div class="rstat-l">Accuracy</div></div>
     </div>
     <div class="share-box">
-      <div class="share-title">📣 Share your score</div>
-      <p>Screenshot and send on  <span class="teams-pill">Teams</span> to Sharabeel.Shah or Rainie.Yang Did you get the England results right? Did you find Wally? Who's your bracket pick to win it all? 🏆</p>
+      <div class="share-title">📣 Drop your score</div>
+      <p>Post in the <span class="teams-pill">Teams</span> <strong>S&C Banking</strong> chat. Did you find Wally? Did you get the trick question? Did you guess the heatwave? ☀️🕵️</p>
     </div>
-    <button class="btn btn-main" onclick="restart()" style="margin-top:24px">⚽ Play Again</button>
+    <button class="btn btn-go" onclick="restart()" style="margin-top:20px">☀️ Play Again</button>
   </div>
 
-  <div id="ctrlBar" style="display:flex;justify-content:flex-end;margin-top:16px">
-    <button class="btn btn-main" id="nextBtn" onclick="handleNext()" disabled>Pick an answer ▶</button>
+  <div id="ctrlBar" style="margin-top:18px">
+    <div class="ctrls">
+      <button class="btn btn-go" id="nextBtn" onclick="handleNext()" disabled>Pick an answer ▶</button>
+    </div>
   </div>
+
 </div>
 
 <script>
-// ══ SLIDE STRUCTURE ══
-// s0-s4 = Q1-5, s5 = Bracket, s6-s7 = Q6-7, s8 = Wally, s9-s11 = Q8-10, results
-const SLIDES=['s0','s1','s2','s3','s4','s6','s7','s8','s9','s10','s11'];
-const MCQ_SLIDES=[0,8,9]; // Only Q1(s0), Q8(s9), Q9(s10) are standard MCQs
-const MCQ_CORRECT=[1,1,1]; // Q1=B(Argentina Qatar), Q8=B(crypto), Q9=B(judicial review)
-// Q1=B(1),Q2=C(2),Q3=C(2),Q4=B(1),Q5=B(1),Q6=A(0),Q7=C(2),Q8=B(1),Q9=B(1),Q10=B(1)
+const SLIDES=['s0','s1','s2','s3','s4','s5','s6'];
+const TOTAL=SLIDES.length;
+const WALLY_SLIDE='s4';
+const THERMO_SLIDE='s3';
 
-let cur=0, mcqScore=0, bonus=0, streak=0, maxStreak=0;
-let mcqDone=new Array(3).fill(false);
-let wallyFound=false;
+let cur=0, score=0, bonus=0, streak=0;
+let done={};
+let wallyFound=false, thermoDone=false;
+const CORRECT_TEMP=36.5;
 
 updateUI();
 
-function getMcqIdx(si){ return MCQ_SLIDES.indexOf(si); }
-
-const CUSTOM_SLIDES=['s1','s2','s3','s4','s6','s7','s8','s11'];
+// ── NAVIGATION ──
 function handleNext(){
-  const si=SLIDES[cur];
-  if(CUSTOM_SLIDES.includes(si)){ advance(); return; }
-  const mi=getMcqIdx(cur);
-  if(mi>=0 && !mcqDone[mi]){ submitMCQ(mi); return; }
-  advance();
+  const sl=SLIDES[cur];
+  const freePass=(sl===WALLY_SLIDE||sl===THERMO_SLIDE);
+  if(!freePass && !done[sl]) return;
+  if(cur===TOTAL-1){ showResults(); return; }
+  cur++;
+  showSlide(cur);
 }
 
-function advance(){
-  if(cur===SLIDES.length-1){ showResults(); return; }
-  cur++;
+function showSlide(idx){
   SLIDES.forEach(id=>document.getElementById(id).classList.remove('active'));
-  document.getElementById(SLIDES[cur]).classList.add('active');
+  document.getElementById(SLIDES[idx]).classList.add('active');
   updateUI();
 }
 
 function updateUI(){
-  const total=SLIDES.length;
-  const mi=getMcqIdx(cur);
-  const nb=document.getElementById('nextBtn');
   const sl=SLIDES[cur];
-
-  document.getElementById('qDisp').textContent=`${cur+1} / ${SLIDES.length}`;
-  document.getElementById('scoreDisp').textContent=mcqScore+bonus;
-  document.getElementById('streakDisp').textContent=`🔥 ${streak}`;
-  document.getElementById('progFill').style.width=((cur/total)*100)+'%';
-  document.getElementById('progLabel').textContent=Math.round((cur/total)*100)+'% complete';
-
-  if(sl==='s8'){
-    nb.disabled=false; nb.textContent='Next ▶';
-  } else if(sl==='s1'){
-    nb.disabled=!flag1Picked; nb.textContent=flag1Picked?'Next ▶':'Tap a flag ▶';
-  } else if(sl==='s2'){
-    nb.disabled=!norwayPicked; nb.textContent=norwayPicked?'Next ▶':'Tap a scoreline ▶';
-  } else if(sl==='s3'){
-    nb.disabled=!playerPicked; nb.textContent=playerPicked?'Next ▶':'Tap a player ▶';
-  } else if(sl==='s4'){
-    nb.disabled=!scorePicked; nb.textContent=scorePicked?'Next ▶':'Tap a scoreline ▶';
-  } else if(sl==='s6'){
-    nb.disabled=!numPicked; nb.textContent=numPicked?'Next ▶':'Tap a number ▶';
-  } else if(sl==='s7'){
-    nb.disabled=!champPicked; nb.textContent=champPicked?'Next ▶':'Tap a flag ▶';
-  } else if(sl==='s11'){
-    nb.disabled=!hostPicked; nb.textContent=hostPicked?'Next ▶':'Tap a flag ▶';
-  } else if(mi>=0){
-    nb.disabled=!mcqDone[mi];
-    nb.textContent=mcqDone[mi]?(cur===SLIDES.length-1?'See Results 🏆':'Next ▶'):'Pick an answer ▶';
-  }
-}
-
-function pick(mi, ai){
-  if(mcqDone[mi])return;
-  if(document.querySelector('#'+SLIDES[MCQ_SLIDES[mi]]+' .ans.locked'))return;
-  const sid=SLIDES[MCQ_SLIDES[mi]];
-  const card=document.getElementById(sid);
-  card.querySelectorAll('.ans').forEach(b=>b.classList.remove('selected'));
-  card.querySelectorAll('.ans')[ai].classList.add('selected');
-  document.getElementById('nextBtn').disabled=false;
-  document.getElementById('nextBtn').textContent=cur===SLIDES.length-1?'See Results 🏆':'Next ▶';
-}
-
-// map MCQ index to explainer element id
-const EXP_IDS=['exp0','expq8','expq9'];
-
-function submitMCQ(mi){
-  const sid=SLIDES[MCQ_SLIDES[mi]];
-  const card=document.getElementById(sid);
-  const sel=card.querySelector('.ans.selected');
-  if(!sel)return;
-  mcqDone[mi]=true;
-  const btns=card.querySelectorAll('.ans');
-  const si=Array.from(btns).indexOf(sel);
-  const correct=MCQ_CORRECT[mi];
-  btns.forEach((b,i)=>{
-    b.classList.add('locked');
-    if(i===correct)b.classList.add('correct');
-    else if(i===si)b.classList.add('wrong');
-    else b.classList.add('dim');
-  });
-  if(si===correct){
-    mcqScore++;
-    streak++;
-    if(streak>maxStreak)maxStreak=streak;
-  } else {
-    streak=0;
-  }
-  document.getElementById(EXP_IDS[mi]).classList.add('show');
   const nb=document.getElementById('nextBtn');
-  nb.disabled=false;
-  nb.textContent=cur===SLIDES.length-1?'See Results 🏆':'Next ▶';
+  const isDone=!!done[sl];
+  const freePass=(sl===WALLY_SLIDE||sl===THERMO_SLIDE);
+
+  document.getElementById('qDisp').textContent=`${cur+1} / ${TOTAL}`;
+  document.getElementById('scoreDisp').textContent=score+bonus;
+  document.getElementById('streakDisp').textContent=`🔥 ${streak}`;
+  document.getElementById('progFill').style.width=((cur/TOTAL)*100)+'%';
+  document.getElementById('progLabel').textContent=Math.round((cur/TOTAL)*100)+'% complete';
+
+  if(freePass||isDone){
+    nb.disabled=false;
+    nb.textContent=cur===TOTAL-1?'See Results 🏆':'Next ▶';
+  } else {
+    nb.disabled=true;
+    nb.textContent='Pick an answer ▶';
+  }
+}
+
+// ── VOTE PICK (Q1) ──
+let voteDone=false;
+function pickVote(idx){
+  if(voteDone)return;
+  voteDone=true; done['s0']=true;
+  const correct=2;
+  ['v0','v1','v2','v3'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    el.classList.add('locked');
+    if(i===correct) el.classList.add('correct');
+    else if(i===idx) el.classList.add('wrong');
+    else el.classList.add('dim');
+  });
+  if(idx===correct){score++;streak++;}else{streak=0;}
+  document.getElementById('exp0').classList.add('show');
   updateUI();
 }
 
-// ══ WALLY ══
+// ── PROFIT PICK (Q3) ──
+let profitDone=false;
+function pickProfit(idx){
+  if(profitDone)return;
+  profitDone=true; done['s2']=true;
+  const correct=1;
+  ['pc0','pc1','pc2','pc3'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    el.classList.add('locked');
+    if(i===correct) el.classList.add('correct');
+    else if(i===idx) el.classList.add('wrong');
+    else el.classList.add('dim');
+  });
+  if(idx===correct){score++;streak++;}else{streak=0;}
+  document.getElementById('exp2').classList.add('show');
+  updateUI();
+}
+
+// ── THERMOMETER (Interactive) ──
+function updateThermo(){
+  const val=document.getElementById('thermoSlider').value;
+  document.getElementById('thermoVal').textContent=val;
+  const pct=(val-20)/(42-20);
+  const r=Math.round(0+pct*200);
+  const g=Math.round(150-pct*150);
+  const b=Math.round(255-pct*255);
+  document.getElementById('thermoVal').style.color=`rgb(${r},${g},${b})`;
+}
+
+function submitThermo(){
+  if(thermoDone)return;
+  thermoDone=true;
+  const val=parseFloat(document.getElementById('thermoSlider').value);
+  const diff=Math.abs(val-CORRECT_TEMP);
+  document.getElementById('thermoSlider').disabled=true;
+  document.getElementById('thermoSubmit').disabled=true;
+  let msg='';
+  if(diff===0){
+    msg='🎯 Exact! Incredible guess — +1 bonus point!';
+    bonus++;
+  } else if(diff<=1){
+    msg=`🔥 Within 1°! The answer was ${CORRECT_TEMP}°C — close enough for a bonus point!`;
+    bonus++;
+  } else if(diff<=3){
+    msg=`☀️ Not bad! You guessed ${val}°C — the answer was ${CORRECT_TEMP}°C. Within 3°.`;
+  } else {
+    msg=`😅 You guessed ${val}°C — the real peak was ${CORRECT_TEMP}°C. Too hot to think straight.`;
+  }
+  document.getElementById('thermoResult').textContent=msg;
+  document.getElementById('exp3').classList.add('show');
+  updateUI();
+}
+
+// ── THREAT TAP (Q5) ──
+let threatDone=false;
+function pickThreat(idx){
+  if(threatDone)return;
+  threatDone=true; done['s5']=true;
+  const correct=0;
+  ['th0','th1','th2','th3'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    el.classList.add('locked');
+    if(i===correct) el.classList.add('correct');
+    else if(i===idx) el.classList.add('wrong');
+    else el.classList.add('dim');
+  });
+  if(idx===correct){score++;streak++;}else{streak=0;}
+  document.getElementById('exp5').classList.add('show');
+  updateUI();
+}
+
+// ── STANDARD MCQ — pick(groupId, answerIdx, correctIdx) ──
+const mcqDone={};
+function pickMCQ(grp, idx, correct){
+  if(mcqDone[grp])return;
+  mcqDone[grp]=true;
+  // Map group to slide
+  const slideMap={icecream:'s1'};
+  const sl=slideMap[grp];
+  done[sl]=true;
+  const btns=document.getElementById(sl).querySelectorAll('.ans');
+  btns.forEach((b,i)=>{
+    b.classList.add('locked');
+    if(i===correct) b.classList.add('correct');
+    else if(i===idx) b.classList.add('wrong');
+    else b.classList.add('dim');
+  });
+  // Trick question: any answer is "right" in spirit but only B scores
+  if(idx===correct){score++;streak++;}else{streak=0;}
+  // Find exp by slide
+  const expMap={s1:'exp1', s6:'exp6'};
+  document.getElementById(expMap[sl]).classList.add('show');
+  updateUI();
+}
+
+// ── WALLY ──
 function onWallyClick(e){
   if(wallyFound)return;
-  wallyFound=true;
-  bonus++;
+  wallyFound=true; bonus++;
   document.getElementById('wallyBadge').classList.add('show');
   const wg=document.getElementById('wallyGroup');
   wg.style.transition='transform .25s';
-  wg.style.transformOrigin='780px 236px';
+  wg.style.transformOrigin='830px 215px';
   wg.style.transform='scale(2.8)';
   setTimeout(()=>wg.style.transform='scale(1)',500);
   updateUI();
 }
 
-
-// ══ PLAYER PICK (Q4) ══
-let playerPicked=false;
-function pickPlayer(idx){
-  if(playerPicked)return;
-  playerPicked=true;
-  const correct=1; // Haaland
-  document.querySelectorAll('.player-card').forEach((c,i)=>{
-    c.classList.add('locked');
-    if(i===correct)c.classList.add('correct');
-    else if(i===idx)c.classList.add('wrong');
-    else c.style.opacity='.25';
-  });
-  if(idx===correct){mcqScore++;streak++;if(streak>maxStreak)maxStreak=streak;}else{streak=0;}
-  document.getElementById('exp3').classList.add('show');
-  document.getElementById('nextBtn').disabled=false;
-  document.getElementById('nextBtn').textContent='Next ▶';
-  updateUI();
-}
-
-// ══ SCORELINE PICK (Q5) ══
-let scorePicked=false;
-function pickScore(idx){
-  if(scorePicked)return;
-  scorePicked=true;
-  const correct=1; // 4-2
-  document.querySelectorAll('.score-match').forEach((c,i)=>{
-    c.classList.add('locked');
-    if(i===correct)c.classList.add('correct');
-    else if(i===idx)c.classList.add('wrong');
-    else c.style.opacity='.25';
-  });
-  if(idx===correct){mcqScore++;streak++;if(streak>maxStreak)maxStreak=streak;}else{streak=0;}
-  document.getElementById('exp4').classList.add('show');
-  document.getElementById('nextBtn').disabled=false;
-  document.getElementById('nextBtn').textContent='Next ▶';
-  updateUI();
-}
-
-
-// ══ FLAG PICK Q2 — USA hosts final ══
-let flag1Picked=false;
-function pickFlag1(idx){
-  if(flag1Picked)return;
-  flag1Picked=true;
-  const correct=1; // USA
-  ['fg1-0','fg1-1','fg1-2','fg1-3'].forEach((id,i)=>{
+// ── BANK TAP (Q6) ──
+let bankDone=false;
+function pickBank(idx){
+  if(bankDone)return;
+  bankDone=true; done['s6']=true;
+  const correct=3; // HSBC
+  ['bk0','bk1','bk2','bk3'].forEach((id,i)=>{
     const el=document.getElementById(id);
     el.classList.add('locked');
-    if(i===correct)el.classList.add('correct');
-    else if(i===idx)el.classList.add('wrong');
-    else el.style.opacity='.25';
+    if(i===correct) el.classList.add('correct');
+    else if(i===idx) el.classList.add('wrong');
+    else el.classList.add('dim');
   });
-  if(idx===correct){mcqScore++;streak++;if(streak>maxStreak)maxStreak=streak;}else{streak=0;}
-  document.getElementById('exp1').classList.add('show');
-  document.getElementById('nextBtn').disabled=false;
-  document.getElementById('nextBtn').textContent='Next ▶';
-  updateUI();
-}
-
-// ══ NORWAY vs BRAZIL scoreline Q3 ══
-let norwayPicked=false;
-function pickNorway(idx){
-  if(norwayPicked)return;
-  norwayPicked=true;
-  const correct=1; // Norway 2-1 Brazil
-  ['ns0','ns1','ns2','ns3'].forEach((id,i)=>{
-    const el=document.getElementById(id);
-    el.classList.add('locked');
-    if(i===correct)el.classList.add('correct');
-    else if(i===idx)el.classList.add('wrong');
-    else el.style.opacity='.25';
-  });
-  if(idx===correct){mcqScore++;streak++;if(streak>maxStreak)maxStreak=streak;}else{streak=0;}
-  document.getElementById('exp2').classList.add('show');
-  document.getElementById('nextBtn').disabled=false;
-  document.getElementById('nextBtn').textContent='Next ▶';
-  updateUI();
-}
-
-// ══ NUMBER PICK Q6 — 48 teams ══
-let numPicked=false;
-function pickNum(idx){
-  if(numPicked)return;
-  numPicked=true;
-  const correct=2; // 48
-  ['ng0','ng1','ng2','ng3'].forEach((id,i)=>{
-    const el=document.getElementById(id);
-    el.classList.add('locked');
-    if(i===correct)el.classList.add('correct');
-    else if(i===idx)el.classList.add('wrong');
-    else el.style.opacity='.25';
-  });
-  if(idx===correct){mcqScore++;streak++;if(streak>maxStreak)maxStreak=streak;}else{streak=0;}
-  document.getElementById('expq6').classList.add('show');
-  document.getElementById('nextBtn').disabled=false;
-  document.getElementById('nextBtn').textContent='Next ▶';
-  updateUI();
-}
-
-// ══ CHAMP PICK Q7 — Brazil 5 titles ══
-let champPicked=false;
-function pickChamp(idx){
-  if(champPicked)return;
-  champPicked=true;
-  const correct=2; // Brazil
-  ['cg0','cg1','cg2','cg3'].forEach((id,i)=>{
-    const el=document.getElementById(id);
-    el.classList.add('locked');
-    if(i===correct)el.classList.add('correct');
-    else if(i===idx)el.classList.add('wrong');
-    else el.style.opacity='.25';
-  });
-  if(idx===correct){mcqScore++;streak++;if(streak>maxStreak)maxStreak=streak;}else{streak=0;}
-  document.getElementById('expq7').classList.add('show');
-  document.getElementById('nextBtn').disabled=false;
-  document.getElementById('nextBtn').textContent='Next ▶';
-  updateUI();
-}
-
-// ══ HOST PICK Q10 — Brazil NOT a host ══
-let hostPicked=false;
-function pickHost(idx){
-  if(hostPicked)return;
-  hostPicked=true;
-  const correct=2; // Brazil not a host
-  ['hg0','hg1','hg2','hg3'].forEach((id,i)=>{
-    const el=document.getElementById(id);
-    el.classList.add('locked');
-    if(i===correct)el.classList.add('correct');
-    else if(i===idx)el.classList.add('wrong');
-    else el.style.opacity='.25';
-  });
-  if(idx===correct){mcqScore++;streak++;if(streak>maxStreak)maxStreak=streak;}else{streak=0;}
-  document.getElementById('expq10').classList.add('show');
-  document.getElementById('nextBtn').disabled=false;
-  document.getElementById('nextBtn').textContent='See Results 🏆';
+  if(idx===correct){score++;streak++;}else{streak=0;}
+  document.getElementById('exp6').classList.add('show');
   updateUI();
 }
 
 
-// ══ RESULTS ══
+// ── RESULTS ──
 function showResults(){
   SLIDES.forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById('ctrlBar').style.display='none';
-  const rc=document.getElementById('resultsCard');
-  rc.classList.add('show');
-  const total=mcqScore+bonus;
-  document.getElementById('bigScore').innerHTML=total+'<span class="big-denom">/10</span>';
-  document.getElementById('rCorrect').textContent=mcqScore+'/10';
+  document.getElementById('resultsCard').classList.add('show');
+  document.getElementById('progFill').style.width='100%';
+  const total=score+bonus;
+  document.getElementById('resScore').innerHTML=`${total}<span class="res-denom">/6</span>`;
+  document.getElementById('rCorrect').textContent=`${score}/6`;
   document.getElementById('rBonus').textContent=bonus;
-  document.getElementById('rAccuracy').textContent=Math.round(mcqScore/10*100)+'%';
-  const emojis=['😬','😅','😬','🤔','👍','🏃','⚽','🦁','🏆','🏆','🏆'];
-  const headlines=['Have you been watching?','Keep watching!','Getting warmer','Not bad for a banker','Decent showing','Good work','Strong effort','Sharp stuff','Almost perfect','Football genius','World Cup scholar 🏆'];
-  const subs=[
-    'England had 3 games in the group stage. That\'s a start.',
-    'A few goals missed — like England vs Ghana.',
-    'You know your football but those banking ones got you.',
-    'Solid — you\'re definitely watching the games.',
-    'Good mix of footy knowledge and banking awareness.',
-    'You\'ve been paying attention on and off the pitch.',
-    'Excellent — both the football and the FCA crypto rules.',
-    'Seriously impressive. Did you find Wally too?',
-    'Full marks plus bonus — you\'re the team\'s quiz MVP. 🏆',
-    'Perfect. You should write the next newsletter.',
-    'Absolutely flawless. Are you sure you\'re not Wally?'
+  document.getElementById('rAccuracy').textContent=Math.round(score/6*100)+'%';
+  const tiers=[
+    {min:0, emoji:'🍦', h:'Keep reading!', s:'The newsletter will catch you up. Grab an ice cream while you do.'},
+    {min:2, emoji:'☀️', h:'Getting there!', s:'You got the vibe but a few headlines slipped by. Worth a re-read.'},
+    {min:4, emoji:'🏖️', h:'Solid effort!', s:'Good mix of banking knowledge and summer energy. Well done.'},
+    {min:6, emoji:'🏆', h:'Full marks!', s:'Perfect. You clearly read the newsletter AND went outside. You are the whole package. 🫡'},
   ];
-  document.getElementById('resultEmoji').textContent=emojis[Math.min(total,10)];
-  document.getElementById('resultHeadline').textContent=headlines[Math.min(total,10)];
-  document.getElementById('resultSub').textContent=subs[Math.min(total,10)];
+  const tier=[...tiers].reverse().find(t=>total>=t.min)||tiers[0];
+  document.getElementById('resEmoji').textContent=tier.emoji;
+  document.getElementById('resHeadline').textContent=tier.h;
+  document.getElementById('resSub').textContent=tier.s;
 }
 
+// ── RESTART ──
 function restart(){
-  cur=0; mcqScore=0; bonus=0; streak=0; maxStreak=0;
-  mcqDone=new Array(MCQ_SLIDES.length).fill(false);
-  wallyFound=false; playerPicked=false; scorePicked=false; flag1Picked=false; norwayPicked=false; numPicked=false; champPicked=false; hostPicked=false;
+  cur=0; score=0; bonus=0; streak=0; done={};
+  voteDone=false; profitDone=false; threatDone=false; thermoDone=false; wallyFound=false; bankDone=false;
+  Object.keys(mcqDone).forEach(k=>delete mcqDone[k]);
   document.getElementById('resultsCard').classList.remove('show');
-  document.getElementById('ctrlBar').style.display='flex';
+  document.getElementById('ctrlBar').style.display='block';
   document.getElementById('wallyBadge').classList.remove('show');
-  document.querySelectorAll('.ans').forEach(b=>{b.className='ans';});
-  document.querySelectorAll('.explainer,.explainer').forEach(e=>e.classList.remove('show'));
-  document.querySelectorAll('.player-card').forEach(c=>{c.className='player-card';c.style.opacity='';});
-  document.querySelectorAll('.score-match').forEach(c=>{c.className='score-match';c.style.opacity='';});
+  document.querySelectorAll('.ans').forEach(b=>b.className='ans');
+  document.querySelectorAll('.tap-card').forEach(c=>{c.className='tap-card';c.style.opacity='';});
+  document.querySelectorAll('.profit-card').forEach(c=>{c.className='profit-card';});
+  document.querySelectorAll('.vote-btn').forEach(b=>{b.className='vote-btn';b.style.opacity='';});
+  document.querySelectorAll('.explainer').forEach(e=>e.classList.remove('show'));
+  document.getElementById('thermoSlider').disabled=false;
+  document.getElementById('thermoSlider').value=28;
+  document.getElementById('thermoVal').textContent='28';
+  document.getElementById('thermoVal').style.color='';
+  document.getElementById('thermoSubmit').disabled=false;
+  document.getElementById('thermoResult').textContent='';
   SLIDES.forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById(SLIDES[0]).classList.add('active');
   updateUI();
